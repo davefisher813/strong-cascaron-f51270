@@ -1828,26 +1828,26 @@ id="page-join-us">
 <section class="section section-tight" id="apply-form-section">
   <div class="wrap">
     <h2 class="t-h2" style="margin-bottom:0.5rem;">Student Athlete <em>Application</em></h2>
-    <p class="t-body" style="margin-bottom:2rem;">Complete the form below. Fields marked <span style="color:#c41e1e;">*</span> are required. Your application goes straight to the Bridge Foundation team.</p>
+    <p class="t-body" style="margin-bottom:2rem;">Complete the form below. Fields marked <span style="color:#cc0000;">*</span> are required. Your application goes straight to the Bridge Foundation team.</p>
 <style>
 #apply-form-section .apf-grid{display:grid;grid-template-columns:1fr 1fr;gap:1rem 1.25rem;}
 @media(max-width:640px){#apply-form-section .apf-grid{grid-template-columns:1fr;}}
 #apply-form-section .apf-full{grid-column:1/-1;}
 #apply-form-section .apf-group{margin-bottom:2.5rem;}
-#apply-form-section .apf-legend{font-family:'Cormorant Garamond',serif;font-size:1.6rem;font-weight:600;color:#0a0a0a;border-bottom:2px solid #c41e1e;padding-bottom:0.4rem;margin-bottom:1.4rem;}
-#apply-form-section .apf-field label{display:block;font-family:'Barlow',sans-serif;font-weight:600;font-size:0.9rem;color:#0a0a0a;margin-bottom:0.35rem;}
+#apply-form-section .apf-legend{font-family:'Cormorant Garamond',serif;font-size:1.6rem;font-weight:600;color:#ffffff;border-bottom:2px solid #cc0000;padding-bottom:0.4rem;margin-bottom:1.4rem;}
+#apply-form-section .apf-field label{display:block;font-family:'Barlow',sans-serif;font-weight:600;font-size:0.9rem;color:#ffffff;margin-bottom:0.35rem;}
 #apply-form-section .apf-field input,#apply-form-section .apf-field select,#apply-form-section .apf-field textarea{width:100%;font-family:'Barlow',sans-serif;font-size:16px;color:#0a0a0a;background:#fff;border:1px solid #ccc;border-radius:6px;padding:0.65rem 0.75rem;box-sizing:border-box;}
 #apply-form-section .apf-field textarea{min-height:90px;resize:vertical;}
-#apply-form-section .apf-field input:focus,#apply-form-section .apf-field select:focus,#apply-form-section .apf-field textarea:focus{outline:none;border-color:#c41e1e;box-shadow:0 0 0 2px rgba(196,30,30,0.15);}
-#apply-form-section .apf-req{color:#c41e1e;}
+#apply-form-section .apf-field input:focus,#apply-form-section .apf-field select:focus,#apply-form-section .apf-field textarea:focus{outline:none;border-color:#cc0000;box-shadow:0 0 0 2px rgba(204,0,0,0.30);}
+#apply-form-section .apf-req{color:#ff4444;}
 #apply-form-section .apf-checks{display:flex;flex-wrap:wrap;gap:0.5rem 1.25rem;}
 #apply-form-section .apf-checks label{display:flex;align-items:center;gap:0.5rem;font-weight:500;font-size:0.95rem;margin:0;}
 #apply-form-section .apf-checks input{width:auto;}
 #apply-form-section .apf-consent{display:flex;align-items:flex-start;gap:0.6rem;font-weight:500;}
 #apply-form-section .apf-consent input{width:auto;margin-top:0.25rem;}
-#apply-form-section .apf-help{font-size:0.82rem;color:#0a0a0a;margin-top:0.4rem;}
-#apply-form-section .apf-submit{background:#c41e1e;color:#fff;border:none;border-radius:6px;font-family:'Barlow',sans-serif;font-weight:700;font-size:1.05rem;padding:0.9rem 2.5rem;cursor:pointer;letter-spacing:0.02em;}
-#apply-form-section .apf-submit:hover{background:#a81818;}
+#apply-form-section .apf-help{font-size:0.82rem;color:#b8b8b8;margin-top:0.4rem;}
+#apply-form-section .apf-submit{background:#cc0000;color:#fff;border:none;border-radius:6px;font-family:'Barlow',sans-serif;font-weight:700;font-size:1.05rem;padding:0.9rem 2.5rem;cursor:pointer;letter-spacing:0.02em;}
+#apply-form-section .apf-submit:hover{background:#a30000;}
 #apply-form-section .apf-submit:disabled{opacity:0.6;cursor:default;}
 #apply-form-section #applyStatus{margin-top:1.25rem;font-family:'Barlow',sans-serif;font-size:1rem;}
 </style>
@@ -1883,9 +1883,9 @@ id="page-join-us">
     });
     if(benefits.length)data['Federal Benefits']=benefits;
     var req=['Full Name','Date of Birth','Email','Phone','School','Grade'];
-    for(var i=0;i<req.length;i++){if(!data[req[i]]){status.style.color='#c41e1e';status.textContent='Please fill in: '+req[i];return;}}
+    for(var i=0;i<req.length;i++){if(!data[req[i]]){status.style.color='#ff4d4d';status.textContent='Please fill in: '+req[i];return;}}
     btn.disabled=true;var orig=btn.textContent;btn.textContent='Submitting...';
-    status.style.color='#0a0a0a';status.textContent='Sending your application...';
+    status.style.color='#ffffff';status.textContent='Sending your application...';
     function send(filePayload){
       if(filePayload)data.__file=filePayload;
       fetch('/.netlify/functions/submit-application',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify(data)})
@@ -1893,21 +1893,21 @@ id="page-join-us">
       .then(function(res){
         if(res.ok&&res.j&&res.j.ok){
           form.style.display='none';
-          status.style.color='#1a7f37';
+          status.style.color='#3fb950';
           status.innerHTML='<strong>Application received. Thank you.</strong><br>The Bridge Foundation team will review it and be in touch.';
           status.scrollIntoView({behavior:'smooth',block:'center'});
         }else{
           btn.disabled=false;btn.textContent=orig;
-          status.style.color='#c41e1e';
+          status.style.color='#ff4d4d';
           status.textContent='Something went wrong. Please try again, or email dave@bffsa.org.';
         }
       })
-      .catch(function(){btn.disabled=false;btn.textContent=orig;status.style.color='#c41e1e';status.textContent='Network error. Please try again, or email dave@bffsa.org.';});
+      .catch(function(){btn.disabled=false;btn.textContent=orig;status.style.color='#ff4d4d';status.textContent='Network error. Please try again, or email dave@bffsa.org.';});
     }
     var fi=form.querySelector('input[type=file][name="Personal Statement File"]');
     if(fi&&fi.files&&fi.files[0]){
       var f=fi.files[0];
-      if(f.size>4.5*1024*1024){btn.disabled=false;btn.textContent=orig;status.style.color='#c41e1e';status.textContent='Essay file too large (max 4MB). Upload a smaller PDF or Word file.';return;}
+      if(f.size>4.5*1024*1024){btn.disabled=false;btn.textContent=orig;status.style.color='#ff4d4d';status.textContent='Essay file too large (max 4MB). Upload a smaller PDF or Word file.';return;}
       var reader=new FileReader();
       reader.onload=function(){var b64=String(reader.result).split(',')[1];send({filename:f.name,contentType:f.type||'application/octet-stream',base64:b64});};
       reader.onerror=function(){send(null);};
