@@ -97,30 +97,38 @@ exports.handler = async function (event) {
   }
 
   const tableId = TABLES[data._table] || DEFAULT_TABLE;
-  const details = buildDetails(data);
 
-  // Primary attempt: write friendly named columns + Details.
-  const niceFields = {};
-  if (data.firstName || data.lastName)
-    niceFields["Name"] = ((data.firstName || "") + " " + (data.lastName || "")).trim();
-  if (data.email) niceFields["Email"] = data.email;
-  if (data.phone) niceFields["Phone"] = data.phone;
-  if (data.company) niceFields["Company"] = data.company;
-  if (data.package) niceFields["Package"] = data.package;
-  if (data.amount) niceFields["Amount"] = data.amount;
-  if (data.eventName) niceFields["Event"] = data.eventName;
-  niceFields["Details"] = details;
-
-  let result = await airtablePost(tableId, niceFields);
-
-  // If named columns don't exist (422), retry with ONLY Details so the data still lands.
-  if (!result.ok && result.status === 422) {
-    result = await airtablePost(tableId, { Details: details });
+  // Map to the real Event Registrations columns: Name, Email, Phone, Event, Item.
+  const fields = {};
+  fields["Name"] = ((data.firstName || "") + " " + (data.lastName || "")).trim() || "(no name)";
+  if (data.email) fields["Email"] = data.email;
+  if (data.phone) fields["Phone"] = data.phone;
+  if (data.eventName) fields["Event"] = data.eventName;
+  // Item holds everything else as a readable block: package, amount, company, players, notes.
+  const item = [];
+  if (data.package) item.push("Package: " + data.package);
+  if (data.amount) item.push("Amount: $" + data.amount);
+  if (data.company) item.push("Company: " + data.company);
+  for (let i = 2; i <= 4; i++) {
+    const f = data["g" + i + "_first"] || "";
+    const l = data["g" + i + "_last"] || "";
+    const e = data["g" + i + "_email"] || "";
+    const nm = (f + " " + l).trim();
+    if (nm || e) item.push("Player " + i + ": " + (nm || "(no name)") + (e ? " | " + e : ""));
   }
-  // Final safety net: if Details also doesn't exist, write to the table's primary
-  // text column "Name", which always exists, packing everything into it.
+  if (data.notes) item.push("Notes: " + data.notes);
+  fields["Item"] = item.join("\n");
+
+  let result = await airtablePost(tableId, fields);
+
+  // Safety net: if any column name is wrong, retry writing everything into Name so nothing is lost.
   if (!result.ok && result.status === 422) {
-    result = await airtablePost(tableId, { Name: details.slice(0, 100000) });
+    const all = ["Name: " + fields["Name"]];
+    if (fields["Email"]) all.push("Email: " + fields["Email"]);
+    if (fields["Phone"]) all.push("Phone: " + fields["Phone"]);
+    if (fields["Event"]) all.push("Event: " + fields["Event"]);
+    if (fields["Item"]) all.push(fields["Item"]);
+    result = await airtablePost(tableId, { Name: all.join("\n").slice(0, 100000) });
   }
 
   if (result.ok) {
