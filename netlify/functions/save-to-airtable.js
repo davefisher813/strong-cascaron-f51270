@@ -14,6 +14,7 @@ const TABLES = {
   contact: "tbltno6crGDeiUOvq"         // Contacts
 };
 const DEFAULT_TABLE = "tbljHSZNvGUwZO5Xu";
+const PEOPLE_TABLE = "tblsJQhjHLG4SQ16o"; // Mailing List: one row per individual person
 
 function airtablePost(tableId, fields) {
   return new Promise((resolve, reject) => {
@@ -98,26 +99,29 @@ exports.handler = async function (event) {
 
   const tableId = TABLES[data._table] || DEFAULT_TABLE;
 
-  // Map to the real Event Registrations columns: Name, Email, Phone, Event, Item.
+  // Map to the real Event Registrations columns:
+  // Name, Email, Phone, Event, Amount, Item (package), Player Names.
   const fields = {};
   fields["Name"] = ((data.firstName || "") + " " + (data.lastName || "")).trim() || "(no name)";
   if (data.email) fields["Email"] = data.email;
   if (data.phone) fields["Phone"] = data.phone;
   if (data.eventName) fields["Event"] = data.eventName;
-  // Item holds everything else as a readable block: package, amount, company, players, notes.
-  const item = [];
-  if (data.package) item.push("Package: " + data.package);
-  if (data.amount) item.push("Amount: $" + data.amount);
-  if (data.company) item.push("Company: " + data.company);
+  if (data.amount) fields["Amount"] = Number(data.amount) || data.amount;
+  if (data.package) fields["Item"] = data.package;
+
+  // Player Names: list all four, primary contact is Player 1.
+  const players = [];
+  players.push("1. " + fields["Name"] + (data.email ? " (" + data.email + ")" : ""));
   for (let i = 2; i <= 4; i++) {
     const f = data["g" + i + "_first"] || "";
     const l = data["g" + i + "_last"] || "";
     const e = data["g" + i + "_email"] || "";
     const nm = (f + " " + l).trim();
-    if (nm || e) item.push("Player " + i + ": " + (nm || "(no name)") + (e ? " | " + e : ""));
+    if (nm || e) players.push(i + ". " + (nm || "(no name)") + (e ? " (" + e + ")" : ""));
   }
-  if (data.notes) item.push("Notes: " + data.notes);
-  fields["Item"] = item.join("\n");
+  if (players.length) fields["Player Names"] = players.join("\n");
+  if (data.company) fields["Player Names"] = (fields["Player Names"] || "") + "\nCompany: " + data.company;
+  if (data.notes) fields["Player Names"] = (fields["Player Names"] || "") + "\nNotes: " + data.notes;
 
   let result = await airtablePost(tableId, fields);
 
@@ -127,12 +131,35 @@ exports.handler = async function (event) {
     if (fields["Email"]) all.push("Email: " + fields["Email"]);
     if (fields["Phone"]) all.push("Phone: " + fields["Phone"]);
     if (fields["Event"]) all.push("Event: " + fields["Event"]);
-    if (fields["Item"]) all.push(fields["Item"]);
+    if (fields["Amount"]) all.push("Amount: " + fields["Amount"]);
+    if (fields["Item"]) all.push("Package: " + fields["Item"]);
+    if (fields["Player Names"]) all.push(fields["Player Names"]);
     result = await airtablePost(tableId, { Name: all.join("\n").slice(0, 100000) });
   }
 
+  // Also save each individual person to the Mailing List so everyone is on file.
+  // Primary contact (Player 1) plus players 2-4 that have a name.
+  try {
+    const people = [];
+    const p1 = ((data.firstName || "") + " " + (data.lastName || "")).trim();
+    if (p1) people.push({ Name: p1, Email: data.email || "" });
+    for (let i = 2; i <= 4; i++) {
+      const f = data["g" + i + "_first"] || "";
+      const l = data["g" + i + "_last"] || "";
+      const e = data["g" + i + "_email"] || "";
+      const nm = (f + " " + l).trim();
+      if (nm) people.push({ Name: nm, Email: e });
+    }
+    for (const person of people) {
+      const pf = { Name: person.Name };
+      if (person.Email) pf.Email = person.Email;
+      await airtablePost(PEOPLE_TABLE, pf);
+    }
+  } catch (e) {
+    // Mailing List write is best-effort; never block the main registration on it.
+  }
+
   if (result.ok) {
-    return { statusCode: 200, headers: cors, body: JSON.stringify({ saved: true }) };
   }
   return {
     statusCode: 502,
