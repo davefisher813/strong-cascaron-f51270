@@ -2339,35 +2339,29 @@ id="page-join-us">
     }
     var entries = {};
     data.forEach(function(v,k){ entries[k] = v; });
-    // Capture registrant + foursome to Airtable (Contact form) so info is never lost, even if payment is abandoned.
+    // Silently save this registration to Airtable the moment it's added, before payment,
+    // so the info is captured even if the person never completes checkout.
     try {
-      var hasPlayers = currentPkg.type === "foursome" || currentPkg.type === "sponsor";
-      var lines = [];
-      lines.push("EVENT REGISTRATION");
-      lines.push("Package: " + currentPkg.name + " (" + fmt(currentPkg.price) + ")");
-      lines.push("Event: " + (currentPkg.eventName || "Bridge Invitational"));
-      lines.push("");
-      lines.push("Primary Contact / Player 1: " + fn + " " + ln);
-      lines.push("Email: " + (data.get("email") || ""));
-      lines.push("Phone: " + (data.get("phone") || ""));
-      if(data.get("company")) lines.push("Company: " + data.get("company"));
-      if(hasPlayers){
-        lines.push("");
-        lines.push("FOURSOME:");
-        for(var pi=2; pi<=4; pi++){
-          var pf = data.get("g"+pi+"_first") || "";
-          var pl = data.get("g"+pi+"_last") || "";
-          var pe = data.get("g"+pi+"_email") || "";
-          var pn = (pf + " " + pl).trim();
-          lines.push("Player " + pi + ": " + (pn || "(not provided)") + (pe ? " | " + pe : ""));
-        }
-      }
-      var msg = lines.join("\n");
-      var url = "https://airtable.com/app8fDCTTFMfNghmw/pagdxi9OV2qYOtNnh/form"
-        + "?prefill_name=" + encodeURIComponent(fn + " " + ln)
-        + "&prefill_email=" + encodeURIComponent(data.get("email") || "")
-        + "&prefill_message=" + encodeURIComponent(msg);
-      window.open(url, "_blank");
+      var payload = {
+        _table: "event",
+        package: currentPkg.name,
+        amount: currentPkg.price,
+        eventName: currentPkg.eventName || "Bridge Invitational",
+        firstName: fn,
+        lastName: ln,
+        email: data.get("email") || "",
+        phone: data.get("phone") || "",
+        company: data.get("company") || "",
+        g2_first: data.get("g2_first") || "", g2_last: data.get("g2_last") || "", g2_email: data.get("g2_email") || "",
+        g3_first: data.get("g3_first") || "", g3_last: data.get("g3_last") || "", g3_email: data.get("g3_email") || "",
+        g4_first: data.get("g4_first") || "", g4_last: data.get("g4_last") || "", g4_email: data.get("g4_email") || "",
+        notes: data.get("notes") || ""
+      };
+      fetch("/.netlify/functions/save-to-airtable", {
+        method: "POST",
+        headers: {"Content-Type": "application/json"},
+        body: JSON.stringify(payload)
+      }).catch(function(){});
     } catch(err) {}
     cart.push({id: currentPkg.id, name: currentPkg.name, price: currentPkg.price, type: currentPkg.type, eventId: currentPkg.eventId, eventName: currentPkg.eventName, lineId: Date.now() + Math.random(), subtitle: subtitle, formData: entries});
     renderCart(); closeReg();
