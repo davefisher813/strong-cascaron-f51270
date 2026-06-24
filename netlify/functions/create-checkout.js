@@ -9058,11 +9058,13 @@ exports.handler = async (event) => {
       }
     }
     const siteUrl = process.env.SITE_URL || "https://bffsa.org";
+    const taxNote = "The Bridge Foundation for Student Athletes is a 501(c)(3) nonprofit organization, EIN 99-2660039. This receipt confirms your payment. For donations, no goods or services were provided unless otherwise noted. Please retain this receipt for your tax records and consult your tax advisor regarding deductibility.";
     const session = await stripe.checkout.sessions.create({
       mode: "payment",
       payment_method_types: ["card"],
       line_items,
       metadata: meta,
+      payment_intent_data: { description: taxNote },
       success_url: `${siteUrl}/events?status=success&session_id={CHECKOUT_SESSION_ID}`,
       cancel_url: `${siteUrl}/events?status=cancelled`,
       submit_type: "pay",
