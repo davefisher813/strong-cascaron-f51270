@@ -9065,6 +9065,7 @@ exports.handler = async (event) => {
       line_items,
       metadata: meta,
       payment_intent_data: { description: taxNote },
+      allow_promotion_codes: true,
       success_url: `${siteUrl}/events?status=success&session_id={CHECKOUT_SESSION_ID}`,
       cancel_url: `${siteUrl}/events?status=cancelled`,
       submit_type: "pay",
