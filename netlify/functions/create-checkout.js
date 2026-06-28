@@ -9033,7 +9033,7 @@ exports.handler = async (event) => {
         },
         unit_amount: Math.round(Number(it.price) * 100)
       },
-      quantity: 1
+      quantity: Math.max(1, parseInt(it.quantity, 10) || 1)
     }));
     if (donation > 0) {
       line_items.push({
