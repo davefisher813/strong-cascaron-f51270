@@ -648,6 +648,48 @@ footer {
 .afld textarea{resize:vertical;}
 .afld input:focus,.afld textarea:focus,.afld select:focus{outline:none;border-color:#c41e1e;}
 @media(max-width:640px){.apply-grid{grid-template-columns:1fr !important;}}
+
+  /* ── Sponsor an Athlete page ── */
+  .sp-steps{display:grid;grid-template-columns:repeat(3,1fr);gap:1.25rem;margin-top:1.75rem}
+  .sp-step{border:1px solid var(--border-mid);background:#111111;padding:1.4rem 1.2rem;border-radius:2px}
+  .sp-step-num{font-family:'Cormorant Garamond',serif;font-size:2rem;font-weight:700;color:var(--red);line-height:1;margin-bottom:0.6rem}
+  .sp-step h3{font-family:'Cormorant Garamond',serif;font-size:1.2rem;font-weight:700;margin:0 0 0.4rem}
+  .sp-step p{font-size:0.85rem;line-height:1.5;color:var(--white);margin:0}
+  .sp-tiers{display:grid;grid-template-columns:repeat(4,1fr);gap:1.25rem;margin-top:1.75rem}
+  .sp-tier{border:1px solid var(--border-mid);background:#111111;padding:1.5rem 1.2rem;border-radius:2px;display:flex;flex-direction:column;transition:border-color 0.2s}
+  .sp-tier:hover{border-color:var(--red)}
+  .sp-tier-name{font-family:'Cormorant Garamond',serif;font-size:1.35rem;font-weight:700;margin:0 0 0.15rem}
+  .sp-tier-price{font-family:'Cormorant Garamond',serif;font-size:1.9rem;font-weight:700;color:var(--red);line-height:1}
+  .sp-tier-price span{font-family:'DM Sans',sans-serif;font-size:0.7rem;color:var(--light-grey);font-weight:500;letter-spacing:0.05em}
+  .sp-tier-desc{font-size:0.82rem;line-height:1.5;color:var(--white);margin:0.75rem 0 1.1rem;flex:1}
+  .sp-btn{display:block;text-align:center;background:var(--red);border:1px solid var(--red);color:var(--white);padding:0.6rem 0.9rem;font-size:0.65rem;letter-spacing:0.15em;text-transform:uppercase;font-weight:700;cursor:pointer;border-radius:2px;font-family:'DM Sans',sans-serif;transition:all 0.15s;text-decoration:none}
+  .sp-btn:hover{background:var(--red-bright);border-color:var(--red-bright)}
+  .sp-trust{display:grid;grid-template-columns:repeat(4,1fr);gap:1.25rem;margin-top:1.75rem}
+  .sp-trust-item{display:flex;gap:0.55rem;align-items:baseline}
+  .sp-trust-item .bullet{color:#c9a84c;font-size:0.95rem;line-height:1;flex-shrink:0}
+  .sp-trust-item p{font-size:0.82rem;line-height:1.5;margin:0;color:var(--white)}
+  .sp-faq{margin-top:1.5rem;border-top:1px solid var(--border-mid)}
+  .sp-faq details{border-bottom:1px solid var(--border-mid)}
+  .sp-faq summary{cursor:pointer;padding:1rem 0;font-family:'Cormorant Garamond',serif;font-size:1.15rem;font-weight:700;list-style:none;display:flex;justify-content:space-between;align-items:center;gap:1rem}
+  .sp-faq summary::-webkit-details-marker{display:none}
+  .sp-faq summary::after{content:'+';color:var(--red);font-family:'DM Sans',sans-serif;font-weight:400;font-size:1.2rem;flex-shrink:0}
+  .sp-faq details[open] summary::after{content:'\2212'}
+  .sp-faq .sp-faq-a{padding:0 0 1rem;font-size:0.88rem;line-height:1.6;color:var(--white);max-width:720px}
+  .sp-label{font-size:0.65rem;letter-spacing:0.25em;text-transform:uppercase;color:var(--light-grey);font-weight:600;display:block;margin-bottom:0.5rem}
+  .sp-opt{text-transform:none;letter-spacing:0;color:var(--grey);font-weight:400}
+  .sp-input{width:100%;box-sizing:border-box;background:#111111;border:1px solid var(--border-mid);color:var(--white);padding:0.75rem 0.9rem;border-radius:2px;font-family:'DM Sans',sans-serif;font-size:0.9rem}
+  .sp-input:focus{outline:none;border-color:var(--red)}
+  .sp-chip-row{display:flex;flex-wrap:wrap;gap:0.5rem}
+  .sp-chip{background:#111111;border:1px solid var(--border-mid);color:var(--white);padding:0.5rem 0.9rem;font-size:0.75rem;font-family:'DM Sans',sans-serif;border-radius:2px;cursor:pointer;transition:all 0.15s}
+  .sp-chip:hover{border-color:var(--red)}
+  .sp-chip.on{background:rgba(204,0,0,0.15);border-color:var(--red);color:var(--white)}
+  @media(max-width:860px){
+    .sp-steps{grid-template-columns:1fr}
+    .sp-tiers{grid-template-columns:1fr 1fr}
+    .sp-trust{grid-template-columns:1fr;gap:0.75rem}
+  }
+  @media(max-width:520px){.sp-tiers{grid-template-columns:1fr}}
+
 </style>
 </head>
 <body>
@@ -660,6 +702,7 @@ footer {
 <button class="p-tab" data-page="the-challenge">The Challenge</button>
 <button class="p-tab" data-page="our-student-athletes">Our Student Athletes</button>
 <button class="p-tab" data-page="get-involved">Get Involved</button>
+<button class="p-tab" data-page="sponsor-an-athlete">Sponsor an Athlete</button>
 <button class="p-tab" data-page="join-us">Join Us</button>
 <button class="p-tab" data-page="events">Events</button></div>
 <div class="page-section active"id="page-home">
@@ -687,6 +730,7 @@ footer {
   <a href="#" class="page-link mob-link" data-page="the-challenge">The Challenge</a>
   <a href="#" class="page-link mob-link" data-page="our-student-athletes">Our Student Athletes</a>
   <a href="#" class="page-link mob-link" data-page="get-involved">Get Involved</a>
+  <a href="#" class="page-link mob-link" data-page="sponsor-an-athlete">Sponsor an Athlete</a>
   <a href="#" class="page-link mob-link" data-page="join-us">Join Us</a>
   <a href="#" class="page-link mob-link" data-page="events">Events</a>
   <a href="https://buy.stripe.com/9B69AT6fYdsP98Ganv3sI01" class="mob-cta" target="_blank">Donate Now</a>
@@ -846,6 +890,7 @@ id="page-our-story">
   <a href="#" class="page-link mob-link" data-page="the-challenge">The Challenge</a>
   <a href="#" class="page-link mob-link" data-page="our-student-athletes">Our Student Athletes</a>
   <a href="#" class="page-link mob-link" data-page="get-involved">Get Involved</a>
+  <a href="#" class="page-link mob-link" data-page="sponsor-an-athlete">Sponsor an Athlete</a>
   <a href="#" class="page-link mob-link" data-page="join-us">Join Us</a>
   <a href="#" class="page-link mob-link" data-page="events">Events</a>
 <a href="https://buy.stripe.com/9B69AT6fYdsP98Ganv3sI01" class="mob-cta" target="_blank">Donate Now</a>
@@ -969,6 +1014,7 @@ id="page-our-story">
   <a href="#" class="page-link mob-link" data-page="the-challenge">The Challenge</a>
   <a href="#" class="page-link mob-link" data-page="our-student-athletes">Our Student Athletes</a>
   <a href="#" class="page-link mob-link" data-page="get-involved">Get Involved</a>
+  <a href="#" class="page-link mob-link" data-page="sponsor-an-athlete">Sponsor an Athlete</a>
   <a href="#" class="page-link mob-link" data-page="join-us">Join Us</a>
   <a href="#" class="page-link mob-link" data-page="events">Events</a>
 <a href="https://buy.stripe.com/9B69AT6fYdsP98Ganv3sI01" class="mob-cta" target="_blank">Donate Now</a>
@@ -1092,6 +1138,7 @@ id="page-our-story">
   <a href="#" class="page-link mob-link" data-page="the-challenge">The Challenge</a>
   <a href="#" class="page-link mob-link" data-page="our-student-athletes">Our Student Athletes</a>
   <a href="#" class="page-link mob-link" data-page="get-involved">Get Involved</a>
+  <a href="#" class="page-link mob-link" data-page="sponsor-an-athlete">Sponsor an Athlete</a>
   <a href="#" class="page-link mob-link" data-page="join-us">Join Us</a>
   <a href="#" class="page-link mob-link" data-page="events">Events</a>
 <a href="https://buy.stripe.com/9B69AT6fYdsP98Ganv3sI01" class="mob-cta" target="_blank">Donate Now</a>
@@ -1200,6 +1247,7 @@ id="page-our-story">
   <a href="#" class="page-link mob-link" data-page="the-challenge">The Challenge</a>
   <a href="#" class="page-link mob-link" data-page="our-student-athletes">Our Student Athletes</a>
   <a href="#" class="page-link mob-link" data-page="get-involved">Get Involved</a>
+  <a href="#" class="page-link mob-link" data-page="sponsor-an-athlete">Sponsor an Athlete</a>
   <a href="#" class="page-link mob-link" data-page="join-us">Join Us</a>
   <a href="#" class="page-link mob-link" data-page="events">Events</a>
 <a href="https://buy.stripe.com/9B69AT6fYdsP98Ganv3sI01" class="mob-cta" target="_blank">Donate Now</a>
@@ -1318,6 +1366,7 @@ id="page-our-story">
   <a href="#" class="page-link mob-link" data-page="the-challenge">The Challenge</a>
   <a href="#" class="page-link mob-link" data-page="our-student-athletes">Our Student Athletes</a>
   <a href="#" class="page-link mob-link" data-page="get-involved">Get Involved</a>
+  <a href="#" class="page-link mob-link" data-page="sponsor-an-athlete">Sponsor an Athlete</a>
   <a href="#" class="page-link mob-link" data-page="join-us">Join Us</a>
   <a href="#" class="page-link mob-link" data-page="events">Events</a>
 <a href="https://buy.stripe.com/9B69AT6fYdsP98Ganv3sI01" class="mob-cta" target="_blank">Donate Now</a>
@@ -1447,6 +1496,7 @@ id="page-our-story">
   <a href="#" class="page-link mob-link" data-page="the-challenge">The Challenge</a>
   <a href="#" class="page-link mob-link" data-page="our-student-athletes">Our Student Athletes</a>
   <a href="#" class="page-link mob-link" data-page="get-involved">Get Involved</a>
+  <a href="#" class="page-link mob-link" data-page="sponsor-an-athlete">Sponsor an Athlete</a>
   <a href="#" class="page-link mob-link" data-page="join-us">Join Us</a>
   <a href="#" class="page-link mob-link" data-page="events">Events</a>
 <a href="https://buy.stripe.com/9B69AT6fYdsP98Ganv3sI01" class="mob-cta" target="_blank">Donate Now</a>
@@ -1608,6 +1658,7 @@ id="page-our-story">
   <a href="#" class="page-link mob-link" data-page="the-challenge">The Challenge</a>
   <a href="#" class="page-link mob-link" data-page="our-student-athletes">Our Student Athletes</a>
   <a href="#" class="page-link mob-link" data-page="get-involved">Get Involved</a>
+  <a href="#" class="page-link mob-link" data-page="sponsor-an-athlete">Sponsor an Athlete</a>
   <a href="#" class="page-link mob-link" data-page="join-us">Join Us</a>
   <a href="#" class="page-link mob-link" data-page="events">Events</a>
 <a href="https://buy.stripe.com/9B69AT6fYdsP98Ganv3sI01" class="mob-cta" target="_blank">Donate Now</a>
@@ -1727,6 +1778,7 @@ id="page-join-us">
   <a href="#" class="page-link mob-link" data-page="the-challenge">The Challenge</a>
   <a href="#" class="page-link mob-link" data-page="our-student-athletes">Our Student Athletes</a>
   <a href="#" class="page-link mob-link" data-page="get-involved">Get Involved</a>
+  <a href="#" class="page-link mob-link" data-page="sponsor-an-athlete">Sponsor an Athlete</a>
   <a href="#" class="page-link mob-link" data-page="join-us">Join Us</a>
   <a href="#" class="page-link mob-link" data-page="events">Events</a>
 <a href="https://buy.stripe.com/9B69AT6fYdsP98Ganv3sI01" class="mob-cta" target="_blank">Donate Now</a>
@@ -1843,6 +1895,7 @@ id="page-join-us">
   <a href="#" class="page-link mob-link" data-page="the-challenge">The Challenge</a>
   <a href="#" class="page-link mob-link" data-page="our-student-athletes">Our Student Athletes</a>
   <a href="#" class="page-link mob-link" data-page="get-involved">Get Involved</a>
+  <a href="#" class="page-link mob-link" data-page="sponsor-an-athlete">Sponsor an Athlete</a>
   <a href="#" class="page-link mob-link" data-page="join-us">Join Us</a>
   <a href="#" class="page-link mob-link" data-page="events">Events</a>
 <a href="https://buy.stripe.com/9B69AT6fYdsP98Ganv3sI01" class="mob-cta" target="_blank">Donate Now</a>
@@ -2770,10 +2823,309 @@ id="page-join-us">
 </div>
 <!-- ═══════════════ END EVENTS PAGE ═══════════════ -->
 
+<div class="page-section" id="page-sponsor-an-athlete">
+<nav>
+  <a href="#" class="page-link" data-page="home">
+    <img src="assets/img-01.png" alt="The Bridge Foundation" class="nav-logo">
+  </a>
+  <ul class="nav-links">
+    <li><a href="#" class="page-link" data-page="our-story">Our Story</a></li>
+    <li><a href="#" class="page-link" data-page="services">Services</a></li>
+    <li><a href="#" class="page-link" data-page="get-involved">Get Involved</a></li>
+    <li><a href="#" class="page-link" data-page="join-us">Join Us</a></li>
+    <li><a href="https://buy.stripe.com/9B69AT6fYdsP98Ganv3sI01" class="nav-cta" target="_blank">Donate Now</a></li>
+  </ul>
+  <button class="hamburger" onclick="toggleMob('sponsor-an-athlete')"><span></span><span></span><span></span></button>
+</nav>
+<div class="mob-menu" id="mm-sponsor-an-athlete">
+  <a href="#" class="page-link mob-link" data-page="home">Home</a>
+  <div class="mob-section">About Us</div>
+  <a href="#" class="page-link mob-link" data-page="our-story">Our Story</a>
+  <a href="#" class="page-link mob-link" data-page="board-of-directors">Board of Directors</a>
+  <a href="#" class="page-link mob-link" data-page="college-advisory">College Advisory</a>
+  <div class="mob-section">Our Impact</div>
+  <a href="#" class="page-link mob-link" data-page="services">Services</a>
+  <a href="#" class="page-link mob-link" data-page="the-challenge">The Challenge</a>
+  <a href="#" class="page-link mob-link" data-page="our-student-athletes">Our Student Athletes</a>
+  <a href="#" class="page-link mob-link" data-page="get-involved">Get Involved</a>
+  <a href="#" class="page-link mob-link" data-page="sponsor-an-athlete">Sponsor an Athlete</a>
+  <a href="#" class="page-link mob-link" data-page="join-us">Join Us</a>
+  <a href="#" class="page-link mob-link" data-page="events">Events</a>
+<a href="https://buy.stripe.com/9B69AT6fYdsP98Ganv3sI01" class="mob-cta" target="_blank">Donate Now</a>
+</div>
+
+<section class="section" style="padding-top:3.5rem">
+  <div class="wrap">
+    <span class="t-eyebrow">Get Involved</span>
+    <h1 class="t-h1">Sponsor an <em>Athlete</em></h1>
+    <p class="t-body" style="max-width:640px">Fund one student athlete's journey: the registrations, equipment, travel, and academic support that carry them from high school fields to college campuses. We pair you. Families keep their privacy.</p>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<section class="section">
+  <div class="wrap">
+    <h2 class="t-h2">How It <em>Works</em></h2>
+    <div class="sp-steps">
+      <div class="sp-step">
+        <div class="sp-step-num">01</div>
+        <h3>Choose Your Level</h3>
+        <p>Pick a monthly sponsorship level. Groups and businesses can pool one sponsorship together.</p>
+      </div>
+      <div class="sp-step">
+        <div class="sp-step-num">02</div>
+        <h3>We Pair You</h3>
+        <p>BFFSA matches you with one current athlete and sends a first name introduction: their sport, their goals, and what their journey costs.</p>
+      </div>
+      <div class="sp-step">
+        <div class="sp-step-num">03</div>
+        <h3>Follow the Journey</h3>
+        <p>Progress updates through the season and a recap at year's end, all shared through the foundation with family approval.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<section class="section">
+  <div class="wrap">
+    <h2 class="t-h2">Sponsorship <em>Levels</em></h2>
+    <p class="t-body" style="max-width:600px">Every level pairs you with one athlete. Higher levels fund more of the journey. Sponsorships run in 12 month terms.</p>
+    <div class="sp-tiers">
+      <div class="sp-tier">
+        <h3 class="sp-tier-name">Supporter</h3>
+        <div class="sp-tier-price">$25<span>/month</span></div>
+        <p class="sp-tier-desc">Covers a season of registration and league fees.</p>
+        <a class="sp-btn sp-tier-btn" data-tier="Supporter $25" href="#sponsor-form">Become a Sponsor</a>
+      </div>
+      <div class="sp-tier">
+        <h3 class="sp-tier-name">Advocate</h3>
+        <div class="sp-tier-price">$50<span>/month</span></div>
+        <p class="sp-tier-desc">Outfits an athlete for the year and funds academic support like test prep.</p>
+        <a class="sp-btn sp-tier-btn" data-tier="Advocate $50" href="#sponsor-form">Become a Sponsor</a>
+      </div>
+      <div class="sp-tier">
+        <h3 class="sp-tier-name">Champion</h3>
+        <div class="sp-tier-price">$100<span>/month</span></div>
+        <p class="sp-tier-desc">Sends an athlete to multiple showcases and campus visits each year.</p>
+        <a class="sp-btn sp-tier-btn" data-tier="Champion $100" href="#sponsor-form">Become a Sponsor</a>
+      </div>
+      <div class="sp-tier">
+        <h3 class="sp-tier-name">Cornerstone</h3>
+        <div class="sp-tier-price">$250<span>/month</span></div>
+        <p class="sp-tier-desc">Funds nearly all of one athlete's annual journey, from first practice to campus visit.</p>
+        <a class="sp-btn sp-tier-btn" data-tier="Cornerstone $250" href="#sponsor-form">Become a Sponsor</a>
+      </div>
+    </div>
+    <p class="t-body" style="margin-top:1.5rem;font-size:0.88rem">Prefer a one-time gift? <a href="https://buy.stripe.com/9B69AT6fYdsP98Ganv3sI01" target="_blank" style="color:var(--red);text-decoration:none;font-weight:600">Donate any amount</a> and it supports the whole program.</p>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<section class="section">
+  <div class="wrap">
+    <h2 class="t-h2">Built on <em>Trust</em></h2>
+    <div class="sp-trust">
+      <div class="sp-trust-item"><span class="bullet">&bull;</span><p>Pairing is done by the foundation. There is never a catalog of athletes to browse.</p></div>
+      <div class="sp-trust-item"><span class="bullet">&bull;</span><p>Families choose their privacy level, from first name and photo to fully anonymous.</p></div>
+      <div class="sp-trust-item"><span class="bullet">&bull;</span><p>All updates and communication flow through BFFSA, protecting everyone involved.</p></div>
+      <div class="sp-trust-item"><span class="bullet">&bull;</span><p>Funding never depends on performance. If a sponsor steps away, the athlete never feels it.</p></div>
+    </div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<section class="section">
+  <div class="wrap">
+    <h2 class="t-h2">Common <em>Questions</em></h2>
+    <div class="sp-faq">
+      <details>
+        <summary>Can I sponsor an athlete I already know?</summary>
+        <div class="sp-faq-a">You can name an athlete as a preference when you sign up. We will privately confirm the family is comfortable, and the foundation retains discretion over all funds, which is what keeps your gift tax deductible. If that pairing is not the right fit, we place you where the need is greatest.</div>
+      </details>
+      <details>
+        <summary>Will I meet my sponsored athlete?</summary>
+        <div class="sp-faq-a">Sponsorship is designed around privacy: updates come through the foundation, and there is no direct contact. Sponsors are always welcome at public BFFSA events. If you want to work with athletes directly, ask us about our volunteer mentor track, which has its own application and screening process.</div>
+      </details>
+      <details>
+        <summary>What happens if I need to cancel?</summary>
+        <div class="sp-faq-a">You can cancel anytime. Your athlete's support continues without interruption, absorbed by the program fund, so no student ever feels a sponsor's circumstances change.</div>
+      </details>
+      <details>
+        <summary>How do I know it's making a difference?</summary>
+        <div class="sp-faq-a">You receive progress updates on your paired athlete through the year, and every sponsor gets the annual impact report showing exactly where program funds went: registrations, equipment, travel, and academics.</div>
+      </details>
+      <details>
+        <summary>Is my sponsorship tax deductible?</summary>
+        <div class="sp-faq-a">Yes. The Bridge Foundation for Student Athletes is a 501(c)(3) nonprofit and every gift is tax deductible to the extent allowed by law. You will receive a receipt for each contribution. Many employers also match charitable gifts.</div>
+      </details>
+      <details>
+        <summary>Can my business or group sponsor together?</summary>
+        <div class="sp-faq-a">Yes. A business, church group, or team of friends can pool any level and share one sponsorship under a single point of contact.</div>
+      </details>
+    </div>
+    <p class="t-body" style="margin-top:1.75rem;font-size:0.88rem">Questions before you start? Email <a href="mailto:dave@bffsa.org" style="color:var(--red);text-decoration:none;font-weight:600">dave@bffsa.org</a>. Happy to talk it through.</p>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<section class="section" id="sponsor-form" style="padding-bottom:4.5rem">
+  <div class="wrap">
+    <h2 class="t-h2">Become a <em>Sponsor</em></h2>
+    <p class="t-body" style="max-width:600px;margin-bottom:1.75rem">Two minutes. This is how we match you with the right athlete. We follow up within two business days to complete your sponsorship.</p>
+
+    <div id="sp-form-body" style="max-width:640px;display:flex;flex-direction:column;gap:1.4rem">
+
+      <div>
+        <label class="sp-label">Sponsorship Level</label>
+        <div class="sp-chip-row" id="sp-tier-row">
+          <button class="sp-chip" data-v="Supporter $25">Supporter $25/mo</button>
+          <button class="sp-chip" data-v="Advocate $50">Advocate $50/mo</button>
+          <button class="sp-chip" data-v="Champion $100">Champion $100/mo</button>
+          <button class="sp-chip" data-v="Cornerstone $250">Cornerstone $250/mo</button>
+          <button class="sp-chip" data-v="One-Time">One-Time Gift</button>
+        </div>
+      </div>
+
+      <div>
+        <label class="sp-label">Your Name</label>
+        <input type="text" id="sp-name" class="sp-input" autocomplete="name">
+      </div>
+
+      <div>
+        <label class="sp-label">Email</label>
+        <input type="email" id="sp-email" class="sp-input" autocomplete="email">
+      </div>
+
+      <div>
+        <label class="sp-label">Phone <span class="sp-opt">(optional)</span></label>
+        <input type="tel" id="sp-phone" class="sp-input" autocomplete="tel">
+      </div>
+
+      <div>
+        <label class="sp-label">Sport Connection</label>
+        <div class="sp-chip-row" id="sp-sport-row">
+          <button class="sp-chip" data-v="Baseball">Baseball</button>
+          <button class="sp-chip" data-v="Basketball">Basketball</button>
+          <button class="sp-chip" data-v="Soccer">Soccer</button>
+          <button class="sp-chip" data-v="Track">Track</button>
+          <button class="sp-chip" data-v="Any Sport">Any Sport</button>
+        </div>
+      </div>
+
+      <div>
+        <label class="sp-label">Your Athletic Story</label>
+        <div class="sp-chip-row" id="sp-bg-row">
+          <button class="sp-chip" data-v="Played in High School">Played in High School</button>
+          <button class="sp-chip" data-v="Played in College">Played in College</button>
+          <button class="sp-chip" data-v="Played Pro">Played Pro</button>
+          <button class="sp-chip" data-v="Coach">Coach</button>
+          <button class="sp-chip" data-v="Fan &amp; Supporter">Fan &amp; Supporter</button>
+          <button class="sp-chip" data-v="First Gen College Grad">First Gen College Grad</button>
+        </div>
+      </div>
+
+      <div>
+        <label class="sp-label">What's Drawing You to Sponsor? <span class="sp-opt">(optional)</span></label>
+        <textarea rows="3" id="sp-story" class="sp-input" style="resize:vertical" placeholder="Someone believed in me once. Paying it forward."></textarea>
+      </div>
+
+      <div>
+        <label class="sp-label">Already Know a BFFSA Athlete? <span class="sp-opt">(optional)</span></label>
+        <input type="text" id="sp-known" class="sp-input" placeholder="Their first and last name">
+        <p style="font-size:0.75rem;color:var(--light-grey);line-height:1.5;margin:0.5rem 0 0">We treat this as a preference, not a guarantee. The foundation confirms privately with the family and retains discretion over all pairings.</p>
+      </div>
+
+      <div id="sp-err" style="display:none;color:var(--red);font-size:0.85rem"></div>
+      <button class="sp-btn" id="sp-submit" style="max-width:220px">Submit</button>
+    </div>
+
+    <div id="sp-success" style="display:none;max-width:640px;border:1px solid var(--border-mid);background:#111111;padding:2rem 1.5rem;border-radius:2px">
+      <h3 style="font-family:'Cormorant Garamond',serif;font-size:1.5rem;font-weight:700;margin:0 0 0.5rem">You're <em style="color:var(--red);font-style:italic">In</em></h3>
+      <p style="font-size:0.9rem;line-height:1.6;margin:0">Thank you. We'll reach out within two business days to complete your sponsorship and introduce you to your paired athlete within two weeks.</p>
+    </div>
+  </div>
+</section>
+</div>
+<!-- END SPONSOR AN ATHLETE PAGE -->
+
+
+
 
 
 <script>(function(){
-  var vp=['home', 'our-story', 'board-of-directors', 'college-advisory', 'services', 'the-challenge', 'our-student-athletes', 'get-involved', 'join-us', 'events'];
+  function chips(rowId,single){
+    var row=document.getElementById(rowId);
+    if(!row)return;
+    row.addEventListener('click',function(e){
+      var c=e.target.closest('.sp-chip');
+      if(!c)return;
+      e.preventDefault();
+      if(single){row.querySelectorAll('.sp-chip').forEach(function(x){if(x!==c)x.classList.remove('on');});}
+      c.classList.toggle('on');
+    });
+  }
+  chips('sp-tier-row',true);
+  chips('sp-sport-row',false);
+  chips('sp-bg-row',false);
+  function vals(rowId){
+    return Array.prototype.map.call(document.querySelectorAll('#'+rowId+' .sp-chip.on'),function(c){return c.getAttribute('data-v');});
+  }
+  document.addEventListener('click',function(e){
+    var t=e.target.closest('.sp-tier-btn');
+    if(t){
+      e.preventDefault();
+      var tier=t.getAttribute('data-tier');
+      var row=document.getElementById('sp-tier-row');
+      if(row){row.querySelectorAll('.sp-chip').forEach(function(c){c.classList.toggle('on',c.getAttribute('data-v')===tier);});}
+      var f=document.getElementById('sponsor-form');
+      if(f)f.scrollIntoView({behavior:'smooth'});
+    }
+  });
+  var btn=document.getElementById('sp-submit');
+  if(btn)btn.addEventListener('click',function(e){
+    e.preventDefault();
+    var err=document.getElementById('sp-err');
+    var name=document.getElementById('sp-name').value.trim();
+    var email=document.getElementById('sp-email').value.trim();
+    var tier=vals('sp-tier-row')[0]||'';
+    if(!name||!email){err.textContent='Name and email are required.';err.style.display='block';return;}
+    if(!tier){err.textContent='Please choose a sponsorship level.';err.style.display='block';return;}
+    err.style.display='none';
+    btn.disabled=true;btn.textContent='Sending...';
+    fetch('/.netlify/functions/save-to-airtable',{
+      method:'POST',
+      headers:{'Content-Type':'application/json'},
+      body:JSON.stringify({
+        _table:'sponsor',
+        name:name,
+        email:email,
+        phone:document.getElementById('sp-phone').value.trim(),
+        tier:tier,
+        sports:vals('sp-sport-row'),
+        background:vals('sp-bg-row'),
+        story:document.getElementById('sp-story').value.trim(),
+        knownAthlete:document.getElementById('sp-known').value.trim()
+      })
+    }).then(function(r){return r.json();}).then(function(d){
+      if(d&&d.ok){
+        document.getElementById('sp-form-body').style.display='none';
+        document.getElementById('sp-success').style.display='block';
+      }else{throw new Error('save failed');}
+    }).catch(function(){
+      btn.disabled=false;btn.textContent='Submit';
+      err.textContent='Something went wrong. Please try again or email dave@bffsa.org.';
+      err.style.display='block';
+    });
+  });
+})();</script>
+<script>(function(){
+  var vp=['home', 'our-story', 'board-of-directors', 'college-advisory', 'services', 'the-challenge', 'our-student-athletes', 'get-involved', 'sponsor-an-athlete', 'join-us', 'events'];
 
   function show(id,replace){
     if(!vp.includes(id))id=vp[0];

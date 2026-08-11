@@ -11,7 +11,8 @@ const BASE_ID = "app8fDCTTFMfNghmw";
 // Anything unknown falls back to Event Registrations too, so data is never dropped.
 const TABLES = {
   event: "tbljHSZNvGUwZO5Xu",          // Event Registrations
-  contact: "tbltno6crGDeiUOvq"         // Contacts
+  contact: "tbltno6crGDeiUOvq",        // Contacts
+  sponsor: "tbltno6crGDeiUOvq"         // Sponsors live in Contacts with sponsor fields
 };
 const DEFAULT_TABLE = "tbljHSZNvGUwZO5Xu";
 const PEOPLE_TABLE = "tblsJQhjHLG4SQ16o"; // Mailing List: one row per individual person
@@ -98,6 +99,28 @@ exports.handler = async function (event) {
   }
 
   const tableId = TABLES[data._table] || DEFAULT_TABLE;
+
+  // Sponsor signups: write Contacts with sponsor-specific columns.
+  if (data._table === "sponsor") {
+    const sf = {};
+    sf["Name"] = (data.name || "").trim() || "(no name)";
+    if (data.email) sf["Email"] = data.email;
+    if (data.phone) sf["Phone"] = data.phone;
+    sf["Source"] = ["Sponsor"];
+    if (data.tier) sf["Sponsor Tier"] = data.tier;
+    if (Array.isArray(data.sports) && data.sports.length) sf["Sponsor Sports"] = data.sports;
+    if (Array.isArray(data.background) && data.background.length) sf["Sponsor Background"] = data.background;
+    if (data.story) sf["Sponsor Story"] = data.story;
+    if (data.knownAthlete) sf["Known Athlete"] = data.knownAthlete;
+    sf["Sponsor Status"] = "New";
+    const sres = await airtablePost(tableId, sf);
+    return {
+      statusCode: sres.ok ? 200 : 502,
+      headers: cors,
+      body: JSON.stringify(sres.ok ? { ok: true } : { ok: false, detail: sres.body })
+    };
+  }
+
 
   // Map to the real Event Registrations columns:
   // Name, Email, Phone, Event, Amount, Item (package), Player Names.
