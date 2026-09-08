@@ -48,13 +48,13 @@ button { cursor: pointer; }
   font-size: clamp(2.8rem, 6vw, 5.2rem);
   font-weight: 700; line-height: 0.94; letter-spacing: 0.01em;
 }
-.t-h1 em { font-style: italic; color: var(--light-grey); }
+.t-h1 em { font-style: italic; color: var(--red-bright); }
 .t-h2 {
   font-family: 'Cormorant Garamond', serif;
   font-size: clamp(1.7rem, 3vw, 2.3rem);
   font-weight: 700; line-height: 1.1;
 }
-.t-h2 em { font-style: italic; color: var(--light-grey); }
+.t-h2 em { font-style: italic; color: var(--red-bright); }
 .t-h3 {
   font-family: 'Cormorant Garamond', serif;
   font-size: 1.25rem; font-weight: 700; line-height: 1.2;
@@ -79,7 +79,15 @@ button { cursor: pointer; }
 .section { padding-top: var(--section-y); padding-bottom: var(--section-y); }
 .section-sm { padding-top: 1.5rem; padding-bottom: 1.5rem; }
 .section-tight { padding-top: 1rem; padding-bottom: 1rem; }
-.divider { height: 1px; background: var(--border); }
+.divider {
+  height: 1px; position: relative;
+  background: linear-gradient(90deg, var(--border) calc(50% - 14px), transparent calc(50% - 14px), transparent calc(50% + 14px), var(--border) calc(50% + 14px));
+}
+.divider::after {
+  content: ''; position: absolute; left: 50%; top: 50%;
+  width: 6px; height: 6px; background: var(--red);
+  transform: translate(-50%, -50%) rotate(45deg);
+}
 
 /* Two-col grids */
 .grid-2   { display: grid; grid-template-columns: 1fr 1fr;   gap: 4rem; align-items: start; }
@@ -131,12 +139,13 @@ nav {
 .nav-drop-menu a:hover { color: var(--white); background: rgba(255,255,255,0.03); }
 .nav-drop > a { cursor: pointer; }
 .nav-cta {
-  background: var(--red) !important; color: var(--white) !important;
+  background: transparent !important; color: var(--red-bright) !important;
+  border: 1px solid var(--red);
   padding: 0.45rem 1.3rem; font-weight: 500 !important;
   text-decoration: none; font-size: 0.72rem;
   letter-spacing: 0.1em; text-transform: uppercase;
 }
-.nav-cta:hover { background: var(--light-grey) !important; }
+.nav-cta:hover { background: var(--red) !important; color: var(--white) !important; }
 .hamburger {
   display: none; flex-direction: column; justify-content: space-between;
   width: 24px; height: 16px; background: none; border: none; padding: 0;
@@ -260,10 +269,10 @@ nav {
   font-weight: 500; letter-spacing: 0.12em; text-transform: uppercase;
   transition: all 0.2s; border: none; font-family: 'DM Sans', sans-serif;
 }
-.btn-white { background: var(--red); color: var(--white); border: 1px solid var(--red); }
-.btn-white:hover { background: var(--red-bright); border-color: var(--red-bright); }
-.btn-outline { background: var(--red); border: 1px solid var(--red); color: var(--white); }
-.btn-outline:hover { background: var(--red-bright); border-color: var(--red-bright); color: var(--white); }
+.btn-white { background: transparent; color: var(--red-bright); border: 1px solid var(--red); }
+.btn-white:hover { background: var(--red); border-color: var(--red); color: var(--white); }
+.btn-outline { background: transparent; border: 1px solid var(--red); color: var(--red-bright); }
+.btn-outline:hover { background: var(--red); border-color: var(--red); color: var(--white); }
 
 /* ── STAT BAR ── */
 .stat-bar {
@@ -318,6 +327,7 @@ nav {
 }
 .p-card {
   background: var(--card-bg); border: 1px solid var(--border);
+  border-left: 2px solid var(--red);
   padding: 0; overflow: hidden; transition: border-color 0.3s;
 }
 .p-card:hover { border-color: var(--border-mid); }
@@ -656,14 +666,14 @@ footer {
   .sp-step h3{font-family:'Cormorant Garamond',serif;font-size:1.2rem;font-weight:700;margin:0 0 0.4rem}
   .sp-step p{font-size:0.85rem;line-height:1.5;color:var(--white);margin:0}
   .sp-tiers{display:grid;grid-template-columns:repeat(4,1fr);gap:1.25rem;margin-top:1.75rem}
-  .sp-tier{border:1px solid var(--border-mid);background:#111111;padding:1.5rem 1.2rem;border-radius:2px;display:flex;flex-direction:column;transition:border-color 0.2s}
+  .sp-tier{border:1px solid var(--border-mid);border-left:2px solid var(--red);background:#111111;padding:1.5rem 1.2rem;border-radius:2px;display:flex;flex-direction:column;transition:border-color 0.2s}
   .sp-tier:hover{border-color:var(--red)}
   .sp-tier-name{font-family:'Cormorant Garamond',serif;font-size:1.35rem;font-weight:700;margin:0 0 0.15rem}
   .sp-tier-price{font-family:'Cormorant Garamond',serif;font-size:1.9rem;font-weight:700;color:var(--red);line-height:1}
   .sp-tier-price span{font-family:'DM Sans',sans-serif;font-size:0.7rem;color:var(--light-grey);font-weight:500;letter-spacing:0.05em}
   .sp-tier-desc{font-size:0.82rem;line-height:1.5;color:var(--white);margin:0.75rem 0 1.1rem;flex:1}
-  .sp-btn{display:block;text-align:center;background:var(--red);border:1px solid var(--red);color:var(--white);padding:0.6rem 0.9rem;font-size:0.65rem;letter-spacing:0.15em;text-transform:uppercase;font-weight:700;cursor:pointer;border-radius:2px;font-family:'DM Sans',sans-serif;transition:all 0.15s;text-decoration:none}
-  .sp-btn:hover{background:var(--red-bright);border-color:var(--red-bright)}
+  .sp-btn{display:block;text-align:center;background:transparent;border:1px solid var(--red);color:var(--red-bright);padding:0.6rem 0.9rem;font-size:0.65rem;letter-spacing:0.15em;text-transform:uppercase;font-weight:700;cursor:pointer;border-radius:2px;font-family:'DM Sans',sans-serif;transition:all 0.15s;text-decoration:none}
+  .sp-btn:hover{background:var(--red);border-color:var(--red);color:var(--white)}
   .sp-trust{display:grid;grid-template-columns:repeat(4,1fr);gap:1.25rem;margin-top:1.75rem}
   .sp-trust-item{display:flex;gap:0.55rem;align-items:baseline}
   .sp-trust-item .bullet{color:#c9a84c;font-size:0.95rem;line-height:1;flex-shrink:0}
@@ -690,6 +700,14 @@ footer {
   }
   @media(max-width:520px){.sp-tiers{grid-template-columns:1fr}}
 
+
+/* ── Reveal + tap feedback ── */
+.rv { opacity: 0; transform: translateY(18px); transition: opacity 0.6s ease, transform 0.6s cubic-bezier(0.23,1,0.32,1); }
+.rv.rv-in { opacity: 1; transform: none; }
+.btn:active, .nav-cta:active, .p-tab:active, .sp-btn:active, .ev-add-btn:active, .ev-sticky-checkout:active, .mob-cta:active { transform: scale(0.96); }
+@media (prefers-reduced-motion: reduce) {
+  .rv { opacity: 1; transform: none; transition: none; }
+}
 </style>
 </head>
 <body>
@@ -1797,7 +1815,7 @@ id="page-join-us">
         <h2 class="t-h2" style="margin-bottom:1.25rem;">2025 Student Athlete <em>Application</em></h2>
         <p class="t-body" style="margin-bottom:1rem;">At The Bridge Foundation, we are committed to helping talented student athletes from underserved communities gain access to the resources they need to compete at the collegiate level.</p>
         <p class="t-body" style="margin-bottom:1.5rem;">Our programs provide the resources, guidance, and support needed to navigate college recruiting, excel academically, and develop athletically.</p>
-        <a href="https://airtable.com/app8fDCTTFMfNghmw/pag3ALC71zOUQQPY9/form" class="btn btn-white" target="_blank">Apply Now</a>
+        <a href="#application-form" class="btn btn-white" onclick="document.getElementById('application-form').scrollIntoView({behavior:'smooth'});return false;">Apply Now</a>
       </div>
       <img src="assets/img-24.jpg" alt="Student athletes" style="width:100%;max-height:460px;object-fit:contain;object-position:center top;background:#0d0d0d;">
     </div>
@@ -1810,7 +1828,7 @@ id="page-join-us">
         <div style="padding:1.5rem 1.75rem;border-top:1px solid var(--border);"><h3 class="t-h3" style="margin-bottom:0.4rem;">Athletic Development</h3><p class="t-small" style="line-height:1.7;">Strength, agility, and sport-specific skill training programs.</p></div>
         <div style="padding:1.5rem 1.75rem;border-left:1px solid var(--border);border-top:1px solid var(--border);"><h3 class="t-h3" style="margin-bottom:0.4rem;">Financial Assistance</h3><p class="t-small" style="line-height:1.7;">Training, travel, equipment, and academic fees covered based on need.</p></div>
         <div style="padding:1.5rem 1.75rem;border-left:1px solid var(--border);border-top:1px solid var(--border);display:flex;align-items:center;justify-content:center;">
-          <a href="https://airtable.com/app8fDCTTFMfNghmw/pag3ALC71zOUQQPY9/form" target="_blank" style="text-align:center;text-decoration:none;">
+          <a href="#application-form" style="text-align:center;text-decoration:none;" onclick="document.getElementById('application-form').scrollIntoView({behavior:'smooth'});return false;">
             <span class="t-eyebrow" style="display:block;margin-bottom:0.5rem;color:var(--light-grey);">Ready to start?</span>
             <span class="btn btn-white" style="display:inline-block;">Apply Now</span>
           </a>
@@ -1829,11 +1847,292 @@ id="page-join-us">
         <h2 class="t-h2" style="margin-bottom:1.25rem;">Who Should <em>Apply</em></h2>
         <p class="t-body" style="margin-bottom:1rem;">We work with high school student athletes from underserved communities who have the talent and drive to compete at the next level but lack access to the recruiting exposure, financial resources, and guidance needed to get there.</p>
         <p class="t-body" style="margin-bottom:1.5rem;">If you play baseball, basketball, soccer, or another sport and are serious about continuing your athletic career in college, we want to hear from you.</p>
-        <a href="https://airtable.com/app8fDCTTFMfNghmw/pag3ALC71zOUQQPY9/form" class="btn btn-white" target="_blank">Start Your Application</a>
+        <a href="#application-form" class="btn btn-white" onclick="document.getElementById('application-form').scrollIntoView({behavior:'smooth'});return false;">Start Your Application</a>
       </div>
     </div>
   </div>
 </section>
+<div class="divider"></div>
+<section class="section section-tight" id="application-form" style="padding-bottom:4.5rem">
+  <div class="wrap">
+    <h2 class="t-h2" style="margin-bottom:0.5rem;">Student Athlete <em>Application</em></h2>
+    <p class="t-body" style="max-width:640px;margin-bottom:1.75rem;">Fields marked with <span style="color:var(--red)">*</span> are required. This takes most families about ten minutes.</p>
+
+    <div id="af-form-body" style="max-width:640px;display:flex;flex-direction:column;gap:1.4rem">
+
+      <h3 class="t-h3" style="margin:0.5rem 0 -0.5rem;">Athlete</h3>
+
+      <div>
+        <label class="sp-label">Full Name *</label>
+        <input type="text" id="af-name" class="sp-input" autocomplete="name">
+      </div>
+
+      <div>
+        <label class="sp-label">Date of Birth *</label>
+        <input type="date" id="af-dob" class="sp-input">
+      </div>
+
+      <div>
+        <label class="sp-label">Gender <span class="sp-opt">(optional)</span></label>
+        <div class="sp-chip-row" id="af-gender-row">
+          <button class="sp-chip" data-v="Male">Male</button>
+          <button class="sp-chip" data-v="Female">Female</button>
+          <button class="sp-chip" data-v="Non-binary">Non-binary</button>
+          <button class="sp-chip" data-v="Prefer not to say">Prefer not to say</button>
+        </div>
+      </div>
+
+      <div>
+        <label class="sp-label">Phone *</label>
+        <input type="tel" id="af-phone" class="sp-input" autocomplete="tel">
+      </div>
+
+      <div>
+        <label class="sp-label">Email *</label>
+        <input type="email" id="af-email" class="sp-input" autocomplete="email">
+      </div>
+
+      <div>
+        <label class="sp-label">Address *</label>
+        <input type="text" id="af-address" class="sp-input" autocomplete="street-address" placeholder="Street, city, state, zip">
+      </div>
+
+      <h3 class="t-h3" style="margin:0.5rem 0 -0.5rem;">School</h3>
+
+      <div>
+        <label class="sp-label">School *</label>
+        <input type="text" id="af-school" class="sp-input">
+      </div>
+
+      <div>
+        <label class="sp-label">Grade *</label>
+        <div class="sp-chip-row" id="af-grade-row">
+          <button class="sp-chip" data-v="8th">8th</button>
+          <button class="sp-chip" data-v="9th">9th</button>
+          <button class="sp-chip" data-v="10th">10th</button>
+          <button class="sp-chip" data-v="11th">11th</button>
+          <button class="sp-chip" data-v="12th">12th</button>
+        </div>
+      </div>
+
+      <div>
+        <label class="sp-label">Graduation Year *</label>
+        <input type="number" id="af-gradyear" class="sp-input" min="2026" max="2033" placeholder="2028">
+      </div>
+
+      <div>
+        <label class="sp-label">GPA *</label>
+        <input type="number" id="af-gpa" class="sp-input" step="0.01" min="0" placeholder="3.5">
+      </div>
+
+      <h3 class="t-h3" style="margin:0.5rem 0 -0.5rem;">Family &amp; Household</h3>
+
+      <div>
+        <label class="sp-label">Parent/Guardian 1 Name *</label>
+        <input type="text" id="af-p1name" class="sp-input">
+      </div>
+
+      <div>
+        <label class="sp-label">Parent/Guardian 1 Phone *</label>
+        <input type="tel" id="af-p1phone" class="sp-input">
+      </div>
+
+      <div>
+        <label class="sp-label">Parent/Guardian 1 Email *</label>
+        <input type="email" id="af-p1email" class="sp-input">
+      </div>
+
+      <div>
+        <label class="sp-label">Parent/Guardian 2 Name <span class="sp-opt">(optional)</span></label>
+        <input type="text" id="af-p2name" class="sp-input">
+      </div>
+
+      <div>
+        <label class="sp-label">Parent/Guardian 2 Phone <span class="sp-opt">(optional)</span></label>
+        <input type="tel" id="af-p2phone" class="sp-input">
+      </div>
+
+      <div>
+        <label class="sp-label">Parent/Guardian 2 Email <span class="sp-opt">(optional)</span></label>
+        <input type="email" id="af-p2email" class="sp-input">
+      </div>
+
+      <div>
+        <label class="sp-label">Household Size *</label>
+        <input type="number" id="af-household" class="sp-input" min="1">
+      </div>
+
+      <div>
+        <label class="sp-label">Federal Benefits <span class="sp-opt">(optional, select all that apply)</span></label>
+        <div class="sp-chip-row" id="af-benefits-row">
+          <button class="sp-chip" data-v="Free/Reduced Lunch">Free/Reduced Lunch</button>
+          <button class="sp-chip" data-v="Free Lunch">Free Lunch</button>
+          <button class="sp-chip" data-v="SNAP">SNAP</button>
+          <button class="sp-chip" data-v="TANF">TANF</button>
+          <button class="sp-chip" data-v="Medicaid">Medicaid</button>
+          <button class="sp-chip" data-v="Other">Other</button>
+          <button class="sp-chip" data-v="None">None</button>
+        </div>
+      </div>
+
+      <div>
+        <label class="sp-label">Household Adjusted Total Income <span class="sp-opt">(optional)</span></label>
+        <input type="number" id="af-income" class="sp-input" min="0" placeholder="65000">
+      </div>
+
+      <h3 class="t-h3" style="margin:0.5rem 0 -0.5rem;">Athletics</h3>
+
+      <div>
+        <label class="sp-label">Sports, Team, and Coach *</label>
+        <textarea rows="3" id="af-sports" class="sp-input" style="resize:vertical" placeholder="List each sport, your team, and your coach's name"></textarea>
+      </div>
+
+      <div>
+        <label class="sp-label">Highlight Video URL <span class="sp-opt">(optional)</span></label>
+        <input type="url" id="af-video" class="sp-input" placeholder="https://">
+      </div>
+
+      <h3 class="t-h3" style="margin:0.5rem 0 -0.5rem;">About You</h3>
+
+      <div>
+        <label class="sp-label">Extracurriculars <span class="sp-opt">(optional)</span></label>
+        <textarea rows="2" id="af-extra" class="sp-input" style="resize:vertical" placeholder="Clubs, jobs, volunteering, anything else you're involved in"></textarea>
+      </div>
+
+      <div>
+        <label class="sp-label">Why do you want to join The Bridge Foundation, and how do you think it will help you reach your goals? *</label>
+        <textarea rows="6" id="af-why" class="sp-input" style="resize:vertical"></textarea>
+      </div>
+
+      <div>
+        <label class="sp-label">Goals <span class="sp-opt">(optional)</span></label>
+        <textarea rows="3" id="af-goals" class="sp-input" style="resize:vertical" placeholder="What are you hoping to achieve, on the field and off?"></textarea>
+      </div>
+
+      <div>
+        <label class="sp-label">How Did You Hear About Us? <span class="sp-opt">(optional)</span></label>
+        <div class="sp-chip-row" id="af-heard-row">
+          <button class="sp-chip" data-v="Word of mouth">Word of mouth</button>
+          <button class="sp-chip" data-v="Coach">Coach</button>
+          <button class="sp-chip" data-v="Social media">Social media</button>
+          <button class="sp-chip" data-v="School">School</button>
+          <button class="sp-chip" data-v="Event">Event</button>
+          <button class="sp-chip" data-v="Other">Other</button>
+        </div>
+      </div>
+
+      <h3 class="t-h3" style="margin:0.5rem 0 -0.5rem;">Consent</h3>
+
+      <div>
+        <label style="display:flex;align-items:flex-start;gap:0.6rem;cursor:pointer;">
+          <input type="checkbox" id="af-release" style="margin-top:0.3rem;width:16px;height:16px;flex-shrink:0;">
+          <span style="font-size:0.85rem;color:var(--white);line-height:1.6;">I give The Bridge Foundation for Student Athletes permission to use photos, video, and my story in the Foundation's materials, website, and social media. *</span>
+        </label>
+      </div>
+
+      <div>
+        <label class="sp-label">Signature *</label>
+        <input type="text" id="af-signature" class="sp-input" placeholder="Type your full legal name">
+        <p style="font-size:0.75rem;color:var(--light-grey);line-height:1.5;margin:0.5rem 0 0">By typing your name above, you are electronically signing this application.</p>
+      </div>
+
+      <div id="af-err" style="display:none;color:var(--red);font-size:0.85rem"></div>
+      <button class="sp-btn" id="af-submit" style="max-width:220px">Submit Application</button>
+    </div>
+
+    <div id="af-success" style="display:none;max-width:640px;border:1px solid var(--border-mid);background:#111111;padding:2rem 1.5rem;border-radius:2px">
+      <h3 style="font-family:'Cormorant Garamond',serif;font-size:1.5rem;font-weight:700;margin:0 0 0.5rem">You're <em style="color:var(--red);font-style:italic">In</em></h3>
+      <p style="font-size:0.9rem;line-height:1.6;margin:0">Thank you for applying. We review applications on a rolling basis and will follow up by email or phone.</p>
+    </div>
+  </div>
+</section>
+
+<script>(function(){
+  function chips(rowId,single){
+    var row=document.getElementById(rowId);
+    if(!row)return;
+    row.addEventListener('click',function(e){
+      var c=e.target.closest('.sp-chip');
+      if(!c)return;
+      e.preventDefault();
+      if(single){row.querySelectorAll('.sp-chip').forEach(function(x){if(x!==c)x.classList.remove('on');});}
+      c.classList.toggle('on');
+    });
+  }
+  chips('af-gender-row',true);
+  chips('af-grade-row',true);
+  chips('af-benefits-row',false);
+  chips('af-heard-row',true);
+  function vals(rowId){
+    return Array.prototype.map.call(document.querySelectorAll('#'+rowId+' .sp-chip.on'),function(c){return c.getAttribute('data-v');});
+  }
+  function val(id){ var el=document.getElementById(id); return el?el.value.trim():''; }
+
+  var btn=document.getElementById('af-submit');
+  if(!btn)return;
+  btn.addEventListener('click',function(e){
+    e.preventDefault();
+    var err=document.getElementById('af-err');
+    var name=val('af-name'), dob=val('af-dob'), phone=val('af-phone'), email=val('af-email'),
+        address=val('af-address'), school=val('af-school'), grade=vals('af-grade-row')[0]||'',
+        gradyear=val('af-gradyear'), gpa=val('af-gpa'), p1name=val('af-p1name'), p1phone=val('af-p1phone'),
+        p1email=val('af-p1email'), household=val('af-household'), sports=val('af-sports'), why=val('af-why'),
+        release=document.getElementById('af-release').checked, signature=val('af-signature');
+
+    var missing = [];
+    if(!name) missing.push('Full Name');
+    if(!dob) missing.push('Date of Birth');
+    if(!phone) missing.push('Phone');
+    if(!email) missing.push('Email');
+    if(!address) missing.push('Address');
+    if(!school) missing.push('School');
+    if(!grade) missing.push('Grade');
+    if(!gradyear) missing.push('Graduation Year');
+    if(!gpa) missing.push('GPA');
+    if(!p1name) missing.push('Parent/Guardian 1 Name');
+    if(!p1phone) missing.push('Parent/Guardian 1 Phone');
+    if(!p1email) missing.push('Parent/Guardian 1 Email');
+    if(!household) missing.push('Household Size');
+    if(!sports) missing.push('Sports, Team, and Coach');
+    if(!why) missing.push('the "Why Bridge" answer');
+    if(!release) missing.push('the media release checkbox');
+    if(!signature) missing.push('Signature');
+
+    if(missing.length){
+      err.textContent = 'Please fill in: ' + missing.join(', ') + '.';
+      err.style.display = 'block';
+      return;
+    }
+    err.style.display = 'none';
+    btn.disabled = true; btn.textContent = 'Submitting...';
+
+    fetch('/.netlify/functions/save-to-airtable', {
+      method: 'POST',
+      headers: {'Content-Type': 'application/json'},
+      body: JSON.stringify({
+        _table: 'application',
+        name: name, dob: dob, gender: vals('af-gender-row')[0]||'', phone: phone, email: email,
+        address: address, school: school, grade: grade, gradyear: gradyear, gpa: gpa,
+        p1name: p1name, p1phone: p1phone, p1email: p1email,
+        p2name: val('af-p2name'), p2phone: val('af-p2phone'), p2email: val('af-p2email'),
+        household: household, benefits: vals('af-benefits-row'), income: val('af-income'),
+        sports: sports, video: val('af-video'), extra: val('af-extra'), why: why,
+        goals: val('af-goals'), heard: vals('af-heard-row')[0]||'',
+        release: release, signature: signature
+      })
+    }).then(function(r){return r.json();}).then(function(d){
+      if(d && d.ok){
+        document.getElementById('af-form-body').style.display = 'none';
+        document.getElementById('af-success').style.display = 'block';
+        window.scrollTo({top: document.getElementById('application-form').offsetTop - 80, behavior: 'smooth'});
+      } else { throw new Error('save failed'); }
+    }).catch(function(){
+      btn.disabled = false; btn.textContent = 'Submit Application';
+      err.textContent = 'Something went wrong. Please try again or email dave@bffsa.org.';
+      err.style.display = 'block';
+    });
+  });
+})();</script>
 
 
 <footer>
@@ -1930,7 +2229,7 @@ id="page-join-us">
   .ev-section{padding:0 0 1rem}
   .ev-section-hdr{margin-bottom:0.75rem}
   .ev-section-hdr h2{font-family:"Cormorant Garamond",Georgia,serif;font-size:clamp(1.3rem,2.4vw,1.75rem);font-weight:700;line-height:1.15;color:var(--white)}
-  .ev-section-hdr h2 em{color:var(--light-grey);font-style:italic;font-weight:500}
+  .ev-section-hdr h2 em{color:var(--red-bright);font-style:italic;font-weight:500}
   .sc-schedule-list{display:flex;flex-direction:column;gap:0.55rem;padding:1.1rem 1.2rem;background:#121212;border:1px solid var(--border);border-left:2px solid var(--red);border-radius:2px}
   .sc-sched-row{display:flex;gap:0.6rem;align-items:baseline;color:var(--white);font-family:"Barlow",sans-serif;font-size:0.95rem;line-height:1.45}
   .sc-sched-bullet{color:#c9a84c;font-size:1.3rem;line-height:1;flex-shrink:0}
@@ -1997,7 +2296,7 @@ id="page-join-us">
   .ev-modal{background:#141414;border:1px solid rgba(255,255,255,0.2);border-radius:2px;width:100%;max-width:580px;padding:1.75rem;position:relative;margin:auto 0}
   .ev-modal-hdr{padding-bottom:1rem;border-bottom:1px solid rgba(255,255,255,0.1);margin-bottom:1.25rem}
   .ev-modal-hdr h2{font-family:"Cormorant Garamond",Georgia,serif;font-size:1.75rem;font-weight:700;line-height:1.1;color:var(--white)}
-  .ev-modal-hdr h2 em{color:var(--light-grey);font-style:italic;font-weight:500}
+  .ev-modal-hdr h2 em{color:var(--red-bright);font-style:italic;font-weight:500}
   .ev-modal-hdr p{color:var(--white);font-size:0.88rem;margin-top:0.35rem}
   .ev-modal-close{position:absolute;top:0.85rem;right:1rem;background:none;border:none;color:var(--white);font-size:1.7rem;cursor:pointer;line-height:1;padding:0.25rem}
   .ev-modal-close:hover{color:var(--red)}
@@ -2866,6 +3165,12 @@ id="page-join-us">
   </div>
 </section>
 
+<section class="section" style="padding-top:0">
+  <div class="wrap">
+    <img src="assets/img-28.jpg" alt="Bridge Foundation athletes at the field" style="width:100%;max-height:460px;object-fit:cover;object-position:center top;border-radius:2px;">
+  </div>
+</section>
+
 <div class="divider"></div>
 
 <section class="section">
@@ -3179,6 +3484,52 @@ id="page-join-us">
     var p=window.location.pathname.replace(/^\/|\/$/g,'')||'home';
     show(vp.includes(p)?p:'home',true);
   });
+})();</script>
+<script>(function(){
+  if(!('IntersectionObserver' in window))return;
+  var reduce=window.matchMedia&&window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  /* scroll reveals */
+  if(!reduce){
+    var rvEls=document.querySelectorAll('.p-card,.svc-item,.sp-tier,.sp-step,.ev-card,.stats-item,.stat-bar-item');
+    var rvIO=new IntersectionObserver(function(entries){
+      entries.forEach(function(en){
+        if(en.isIntersecting){en.target.classList.add('rv-in');rvIO.unobserve(en.target);}
+      });
+    },{threshold:0.1});
+    rvEls.forEach(function(el){el.classList.add('rv');rvIO.observe(el);});
+  }
+  /* stat count-up */
+  var nums=document.querySelectorAll('.home-hero-stat .num,.stat-bar-item .num,.stats-item .big');
+  var cuIO=new IntersectionObserver(function(entries){
+    entries.forEach(function(en){
+      if(!en.isIntersecting)return;
+      cuIO.unobserve(en.target);
+      var el=en.target,raw=el.textContent;
+      var m=raw.match(/^([^0-9]*)([0-9][0-9.,]*)(.*)$/);
+      if(!m)return;
+      var pre=m[1],digits=m[2],suf=m[3];
+      var target=parseFloat(digits.replace(/,/g,''));
+      if(isNaN(target))return;
+      if(reduce){el.textContent=raw;return;}
+      var dec=(digits.split('.')[1]||'').length;
+      var hasComma=digits.indexOf(',')>-1;
+      var t0=null,DUR=900;
+      function fmt(v){
+        var str=v.toFixed(dec);
+        if(hasComma)str=str.replace(/\B(?=(\d{3})+(?!\d))/g,',');
+        return pre+str+suf;
+      }
+      function step(ts){
+        if(t0===null)t0=ts;
+        var k=Math.min((ts-t0)/DUR,1);
+        k=1-Math.pow(1-k,3);
+        el.textContent=fmt(target*k);
+        if(k<1)requestAnimationFrame(step);else el.textContent=raw;
+      }
+      requestAnimationFrame(step);
+    });
+  },{threshold:0.4});
+  nums.forEach(function(el){cuIO.observe(el);});
 })();</script>
 </body>
 </html>
