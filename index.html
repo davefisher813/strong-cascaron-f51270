@@ -101,6 +101,9 @@ button { cursor: pointer; }
 @media(max-width:860px) {
   :root { --pad-x: var(--pad-x-sm); --section-y: var(--section-y-sm); }
   .grid-2, .grid-2c, .grid-1-2 { grid-template-columns: 1fr; gap: 2.5rem; }
+  /* image-first two-column blocks: heading leads, photo follows */
+  .grid-2c > img:first-child { order: 2; }
+  .grid-2c > img:first-child + div { order: 1; }
   .grid-3 { grid-template-columns: 1fr; gap: 1.5rem; }
   .section-tight { padding-top: 1.5rem; padding-bottom: 1.5rem; }
 }
@@ -1121,7 +1124,7 @@ footer {
   <h1 class="t-h1 fade-in" style="margin-top:0.5rem;">Our <em>Leadership</em></h1>
 </div>
 <div class="divider"></div>
-<section class="section">
+<section class="section section-tight">
   <div class="wrap">
         <span class="t-eyebrow" style="margin-bottom:0.75rem;display:block;">Governance</span>
     <h2 class="t-h2" style="margin-bottom:1.25rem;">Board of <em>Directors</em></h2>
@@ -1596,7 +1599,7 @@ footer {
   <h1 class="t-h1 fade-in" style="margin-top:0.5rem;"><em>News</em> and Events</h1>
 </div>
 <div class="divider"></div>
-<section class="section">
+<section class="section section-tight">
   <div class="wrap">
     <span class="t-eyebrow" style="margin-bottom:0.75rem;display:block;">2026 Season</span>
     <h2 class="t-h2" style="margin-bottom:1.25rem;">A Year of <em>Support</em></h2>
