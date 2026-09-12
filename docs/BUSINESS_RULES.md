@@ -18,7 +18,7 @@
 
 ## Forms
 
-All forms write to Airtable through `netlify/functions/save-to-airtable.js` (`_table` of `event`, `sponsor`, or `application`). Do not add a second backend. Note the uncommitted application routing in CURRENT_STATE.
+All forms write to Airtable through `netlify/functions/save-to-airtable.js` (`_table` of `event`, `sponsor`, or `application`). Do not add a second backend.
 
 ## Approval
 

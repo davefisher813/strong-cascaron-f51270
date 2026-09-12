@@ -2,7 +2,6 @@
 
 ## Planned
 
-- Resolve the uncommitted Student Applications routing in `save-to-airtable.js`
 - Delete the dead root `submit-application.js`
 - Post-Bridge Invitational updates (sponsor thank-yous, photos, gross results)
 - Board page refresh after board expansion

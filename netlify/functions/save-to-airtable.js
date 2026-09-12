@@ -12,7 +12,8 @@ const BASE_ID = "app8fDCTTFMfNghmw";
 const TABLES = {
   event: "tbljHSZNvGUwZO5Xu",          // Event Registrations
   contact: "tbltno6crGDeiUOvq",        // Contacts
-  sponsor: "tbltno6crGDeiUOvq"         // Sponsors live in Contacts with sponsor fields
+  sponsor: "tbltno6crGDeiUOvq",        // Sponsors live in Contacts with sponsor fields
+  application: "tblSl803SSFkQN08q"     // Student Applications
 };
 const DEFAULT_TABLE = "tbljHSZNvGUwZO5Xu";
 const PEOPLE_TABLE = "tblsJQhjHLG4SQ16o"; // Mailing List: one row per individual person
@@ -81,6 +82,13 @@ function buildDetails(data) {
   return lines.join("\n");
 }
 
+// Turn a value into a Number if it looks numeric, otherwise leave it out.
+function num(v) {
+  if (v === undefined || v === null || v === "") return undefined;
+  const n = Number(v);
+  return Number.isNaN(n) ? undefined : n;
+}
+
 exports.handler = async function (event) {
   const cors = {
     "Access-Control-Allow-Origin": "*",
@@ -121,6 +129,49 @@ exports.handler = async function (event) {
     };
   }
 
+  // Student applications: write directly to Student Applications with real field names.
+  if (data._table === "application") {
+    const af = {};
+    af["Full Name"] = (data.name || "").trim() || "(no name)";
+    if (data.dob) af["Date of Birth"] = data.dob;
+    if (data.gender) af["Gender"] = data.gender;
+    if (data.phone) af["Phone"] = data.phone;
+    if (data.email) af["Email"] = data.email;
+    if (data.address) af["Address"] = data.address;
+    if (data.school) af["School"] = data.school;
+    if (data.grade) af["Grade"] = data.grade;
+    const gradyear = num(data.gradyear); if (gradyear !== undefined) af["Graduation Year"] = gradyear;
+    const gpa = num(data.gpa); if (gpa !== undefined) af["GPA"] = gpa;
+    if (data.p1name) af["Parent 1 Name"] = data.p1name;
+    if (data.p1phone) af["Parent 1 Phone"] = data.p1phone;
+    if (data.p1email) af["Parent 1 Email"] = data.p1email;
+    if (data.p2name) af["Parent 2 Name"] = data.p2name;
+    if (data.p2phone) af["Parent 2 Phone"] = data.p2phone;
+    if (data.p2email) af["Parent 2 Email"] = data.p2email;
+    const household = num(data.household); if (household !== undefined) af["Household Size"] = household;
+    if (Array.isArray(data.benefits) && data.benefits.length) af["Federal Benefits"] = data.benefits;
+    const income = num(data.income); if (income !== undefined) af["Parents Adjusted Total Income"] = income;
+    if (data.sports) af["Sports and Coaches"] = data.sports;
+    if (data.video) af["Highlight Video URL"] = data.video;
+    if (data.extra) af["Extracurriculars"] = data.extra;
+    if (data.why) af["Why BFFSA"] = data.why;
+    if (data.goals) af["Goals"] = data.goals;
+    if (data.heard) af["How Heard"] = data.heard;
+    af["Photo/Media Release"] = !!data.release;
+    if (data.signature) af["Athlete Signature"] = data.signature;
+
+    const ares = await airtablePost(tableId, af);
+    if (ares.ok) {
+      // Best-effort: also add the applicant to the Mailing List so they're on file.
+      try {
+        const pf = { Name: af["Full Name"] };
+        if (data.email) pf.Email = data.email;
+        await airtablePost(PEOPLE_TABLE, pf);
+      } catch (e) {}
+      return { statusCode: 200, headers: cors, body: JSON.stringify({ ok: true }) };
+    }
+    return { statusCode: 502, headers: cors, body: JSON.stringify({ ok: false, detail: ares.body }) };
+  }
 
   // Map to the real Event Registrations columns:
   // Name, Email, Phone, Event, Amount, Item (package), Player Names.
@@ -182,7 +233,9 @@ exports.handler = async function (event) {
     // Mailing List write is best-effort; never block the main registration on it.
   }
 
+  // Fixed: this used to fall through to an unconditional 502 even on success.
   if (result.ok) {
+    return { statusCode: 200, headers: cors, body: JSON.stringify({ ok: true, saved: true }) };
   }
   return {
     statusCode: 502,
