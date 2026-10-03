@@ -1,5 +1,5 @@
 # CURRENT STATE
-Last Updated: September 12, 2026. Rewritten from `git log`, the file tree, and a comparison with the live site.
+Last Updated: October 3, 2026 (leadership headshots added). Rewritten from `git log`, the file tree, and a comparison with the live site.
 
 ## PRIORITIES
 
@@ -12,6 +12,8 @@ Site
 Status: Stable at www.bffsa.org. Main (617cb3c, September 9, 2026) is in sync with origin and matches the live page. Eight pages, three Airtable forms, Stripe donation link, Bridge Invitational sponsorship checkout. Latest change: student applications routed to their own Airtable table (September 12, 2026).
 
 Checks run on the untouched file (September 12, 2026): five inline scripts pass `node --check`; 605 div opens and 605 closes; zero em dashes.
+
+Leadership headshots (October 3, 2026): Shawna Hamilton Doster, Christianna Molina, Anessa Brito photos added; DJ Peoples photo replaced (img-14). All cropped to 4:5 (800x1000). Henry Tolentino not added (no bio or headshot yet). Karen Alvarez stays text only.
 
 ## WAITING
 
