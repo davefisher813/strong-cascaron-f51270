@@ -8,7 +8,7 @@
 
 ## Later
 
-- Bridge Pathways: Money program page when the first cohort is scheduled
+- Bridge to the Trades: replace the coming soon teaser with the full page at launch (Dave to supply the brief)
 - Elite Squad partnership mention (cross-promotion) once Dave approves copy
 
 ## Not planned

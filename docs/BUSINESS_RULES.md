@@ -7,6 +7,8 @@
 - Public financials: gross only. Net event revenue is board-only.
 - Bridge to the Trades: BFFSA does not screen, interview, fund gear, or employ anyone; no money moves between BFFSA and RB Plumbing; participant financial help goes through the scholarship process separately. Copy must not imply otherwise.
 
+- Bridge to the Trades public copy is a coming soon teaser only (Dave, October 13, 2026): no partner names, steps, or program detail until launch. The teaser wording was supplied by Dave; use it as written.
+
 ## Facts that must stay correct
 
 - Main Board: Shawna Hamilton Doster (Chair), Byron Valverde (Vice Chair), Wei Chang (Treasurer), Linda Fisher (Secretary). Lear Beyer is no longer on the board.

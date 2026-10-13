@@ -1,5 +1,5 @@
 # CURRENT STATE
-Last Updated: October 3, 2026 (leadership headshots added). Rewritten from `git log`, the file tree, and a comparison with the live site.
+Last Updated: October 13, 2026 (Bridge Pathways pages added, local branch pathways-page, not pushed). Rewritten from `git log`, the file tree, and a comparison with the live site.
 
 ## PRIORITIES
 
@@ -11,9 +11,11 @@ Last Updated: October 3, 2026 (leadership headshots added). Rewritten from `git 
 Site
 Status: Stable at www.bffsa.org. Main (617cb3c, September 9, 2026) is in sync with origin and matches the live page. Eight pages, three Airtable forms, Stripe donation link, Bridge Invitational sponsorship checkout. Latest change: student applications routed to their own Airtable table (September 12, 2026).
 
-Checks run on the untouched file (September 12, 2026): five inline scripts pass `node --check`; 605 div opens and 605 closes; zero em dashes.
+Checks run on the Pathways build (October 13, 2026): six inline scripts pass `node --check`; 691 div opens and 691 closes (the earlier 605 count was stale; the baseline was 610); zero em dashes. Pages checked at 320, 390, and 1280 wide; router, Programs tab highlight, mobile menu, and Join form states tested in a browser with a stubbed network.
 
 Leadership headshots (October 3, 2026): Shawna Hamilton Doster, Christianna Molina, Anessa Brito photos added; DJ Peoples photo replaced (img-14). All cropped to 4:5 (800x1000). Henry Tolentino not added (no bio or headshot yet). Karen Alvarez stays text only.
+
+Bridge Pathways (October 13, 2026): two new pages, `/pathways` and `/pathways-finance`, on local branch `pathways-page`. Not pushed. The Join form uses the existing `event` path (Event Registrations plus Mailing List); not verified against the live Airtable base.
 
 ## WAITING
 

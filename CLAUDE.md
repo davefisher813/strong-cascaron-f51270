@@ -13,7 +13,7 @@ Owner: Dave Fisher. Business: Product & Engineering (BFFSA is the client).
 
 ## Repo-specific hard rules
 
-- One file: `index.html` (about 3,400 lines, five inline scripts) is a client-side multi-page site switched with `data-page` attributes. Images live in `assets/`. Two Netlify functions in `netlify/functions/`.
+- One file: `index.html` (about 3,700 lines, six inline scripts) is a client-side multi-page site switched with `data-page` attributes. Images live in `assets/`. Two Netlify functions in `netlify/functions/`.
 - Surgical edits only. `grep -n` to locate, `sed -n` for narrow ranges, targeted replacements, verify with `wc -l` and `ls -la`. One change at a time.
 - Mobile-first. Every change checked at iPhone width. Main breakpoint is `max-width: 860px`; smaller ones at 640, 620, 580, 520, 500.
 - Anything Shawna has reviewed requires Dave's explicit approval before structural changes.
@@ -28,8 +28,8 @@ Owner: Dave Fisher. Business: Product & Engineering (BFFSA is the client).
 
 Python is not installed on Dave's machine. Use Node.
 
-- Extract each inline `<script>` block and run `node --check` on it (five blocks today).
-- Confirm `<div>` open and close counts still match (605 each today) and zero em dashes.
+- Extract each inline `<script>` block and run `node --check` on it (six blocks today).
+- Confirm `<div>` open and close counts still match (691 each today) and zero em dashes.
 - Netlify functions: run with `netlify dev` if available, otherwise call the handler with a test payload in Node.
 - Open the page at 390 width and desktop for every changed section.
 - Every link and the Stripe URL on a changed page resolves.

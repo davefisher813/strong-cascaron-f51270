@@ -3,10 +3,15 @@ Verified against the repo on September 12, 2026 (commit 617cb3c). Lines marked (
 
 ## Stack
 
-- Static site. One file, `index.html` (3,430 lines, 205KB): inline CSS, five inline scripts, eight client-side pages switched by `data-page` (home, about, programs, athletes, leadership, news, join-us, support) plus three forms (contact, sponsor, application). Images in `assets/` (28 files).
+- Static site. One file, `index.html` (3,713 lines, 215KB): inline CSS, six inline scripts, ten client-side pages switched by `data-page` (home, about, programs, athletes, leadership, news, join-us, support, pathways, pathways-finance) plus four forms (contact, sponsor, application, Pathways Finance join). Images in `assets/` (28 files).
 - No framework, no build, no `package.json`, no `netlify.toml`. `_redirects` maps `/api/*` to Netlify functions and everything else to `index.html`.
 - Hosting: Netlify, auto-deploy on push to main. The live page at www.bffsa.org matches commit 617cb3c exactly (ignoring trailing whitespace) as of September 12, 2026.
 - `submit-application.js` at the repo root is a leftover; it is not in `netlify/functions/` so Netlify does not deploy it. Candidate for deletion.
+
+## Bridge Pathways
+
+- Two pages: `pathways` (overview, Finance card plus a Bridge to the Trades coming soon teaser) and `pathways-finance`. Both sit under the Programs tab; the router highlights Programs for any id starting with `pathways`. URLs are `/pathways` and `/pathways-finance`.
+- The Finance join form posts to `save-to-airtable` with `_table: "event"` and `eventName: "Bridge Pathways Finance, Season One"`, so entries land in Event Registrations and the Mailing List. No function change. Dry run tested with a stubbed network only; not verified against the live base.
 
 ## Netlify functions
 
@@ -24,4 +29,4 @@ Claude Code commits locally; Dave pushes (or says "push"). Netlify builds from m
 
 ## Verification
 
-`node --check` on each extracted inline script (five blocks), div balance (605 open and close), zero em dashes, 390 and desktop screenshots, link check.
+`node --check` on each extracted inline script (six blocks), div balance (691 open and close), zero em dashes, 390 and desktop screenshots, link check.

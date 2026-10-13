@@ -10,7 +10,7 @@ Donors and sponsors, prospective student athletes and families, partners, board 
 
 ## Main flows
 
-1. Learn: home, about, programs (Bridge Invitational, Bridge Rising Leaders Scholarship, Soccer ID, the Signing Class), athletes, leadership bios, news, impact numbers. Bridge Pathways, Summer Cookout, and Basketball ID are not named on the current page (unverified whether that is intended).
+1. Learn: home, about, programs (Bridge Invitational, Bridge Rising Leaders Scholarship, Soccer ID, the Signing Class), athletes, leadership bios, news, impact numbers. Summer Cookout and Basketball ID are not named on the current page (unverified whether that is intended). Bridge Pathways has its own pages (overview and Finance) under the Programs tab; Bridge to the Trades appears there as a coming soon teaser.
 2. Apply: student application form to Airtable.
 3. Register: event registration to Airtable.
 4. Donate: fixed Stripe Payment Link on every page. Sponsor: Bridge Invitational tiers (single, foursome, bronze, silver, gold, platinum) through the checkout function with promo codes enabled.

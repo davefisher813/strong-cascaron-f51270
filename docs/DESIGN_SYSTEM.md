@@ -31,6 +31,10 @@ There is no gold token on the website. The app uses different reds (`#c8180c`); 
 - Breakpoints: main `max-width: 860px` (15 blocks) with `min-width: 861px` for desktop-only rules; finer ones at 640, 620, 580, 520, 500. `prefers-reduced-motion` is respected.
 - Typography classes: `.t-eyebrow`, `.t-h1`, `.t-h2`, `.t-body`. Athlete rows use `.ath-row`, `.ath-name`, `.ath-school`, `.ath-tag`, `.ath-badge`.
 
+## Bridge Pathways pages
+
+Built only from existing patterns: `.page-hdr`, `.t-eyebrow`, `.t-h1`, `.t-h2`, `.svc-grid`, `.sp-steps`, `.sc-schedule-list`, `.cta-strip`, `.home-hero-stats`. New classes (`.prog-grid`, `.prog`, `.pw-*`, `.crumb`, `.wk-grp`) are scoped to those pages. Red marks required weeks; optional weeks are neutral. No gold.
+
 ## Copy rules
 
 - "We" and "us". Never "I".

@@ -711,6 +711,42 @@ footer {
 @media (prefers-reduced-motion: reduce) {
   .rv { opacity: 1; transform: none; transition: none; }
 }
+/* ── BRIDGE PATHWAYS ── */
+.crumb { display: inline-block; color: var(--light-grey); text-decoration: none; letter-spacing: 0.34em; text-transform: uppercase; font-size: 0.65rem; font-weight: 500; }
+.crumb:hover { color: var(--white); }
+.prog-grid { display: grid; grid-template-columns: 1fr 1fr; border: 1px solid var(--border); margin-top: 2rem; }
+.prog { padding: 2rem; display: flex; flex-direction: column; gap: 0.75rem; border-right: 1px solid var(--border); }
+.prog:last-child { border-right: none; }
+.prog h3 { font-family: 'Cormorant Garamond', serif; font-size: 1.9rem; font-weight: 700; line-height: 1.1; }
+.prog h3 em { font-style: italic; color: var(--light-grey); }
+.prog p { margin: 0; }
+.prog .btn-row { margin-top: auto; padding-top: 0.75rem; justify-content: flex-start; }
+.prog-lead { font-family: 'Cormorant Garamond', serif; font-size: 1.45rem; font-weight: 700; line-height: 1.2; color: var(--white); font-style: italic; }
+.prog-facts { display: flex; flex-wrap: wrap; gap: 0.5rem; }
+.prog-soon { margin-top: auto !important; padding-top: 0.75rem; color: var(--red-bright); font-weight: 500; letter-spacing: 0.2em; text-transform: uppercase; font-size: 0.85rem; }
+.pw-stats .num { font-size: clamp(1.2rem, 5.2vw, 1.9rem); }
+.wk-grp { display: block; margin: 2.25rem 0 1rem; }
+.wk-grp:first-of-type { margin-top: 1.75rem; }
+.wk-grp .t-label { display: block; }
+.wk-grp .t-h3 { margin-top: 0.2rem; }
+.svc-grid.pw-grid { justify-items: stretch; margin-top: 0; }
+.svc-grid.pw-grid .svc-item { padding: 1.5rem 1.5rem 1.6rem; }
+.svc-grid.pw-grid .svc-item:last-child:nth-child(odd) { max-width: none; }
+.pw-grid .svc-item.req { box-shadow: inset 2px 0 0 var(--red); }
+.pw-grid .svc-item.opt { box-shadow: inset 2px 0 0 rgba(255,255,255,0.3); }
+.pw-grid .svc-item.req .svc-num { color: rgba(255,0,0,0.8); }
+.pw-grid .svc-item.opt .svc-num { color: var(--light-grey); }
+.pw-badge { font-size: 0.62rem; padding: 3px 10px; margin-top: 0.7rem; display: inline-block; }
+.pw-promise .sc-sched-bullet { color: var(--red-bright); }
+.pw-form { max-width: 460px; margin: 0 auto; text-align: left; }
+.pw-err { display: none; color: var(--red-bright); font-size: 0.9rem; margin-bottom: 1rem; }
+.pw-success { display: none; text-align: center; color: var(--white); font-size: 1.05rem; }
+@media(max-width:860px) {
+  .prog-grid { grid-template-columns: 1fr; }
+  .prog { border-right: none; border-bottom: 1px solid var(--border); }
+  .prog:last-child { border-bottom: none; }
+}
+
 </style>
 </head>
 <body>
@@ -1368,6 +1404,217 @@ footer {
 </div>
 
 
+<footer>
+  <div class="footer-grid">
+    <div class="footer-brand">
+      <a href="#" class="page-link" data-page="home">
+        <img src="assets/img-05.png" alt="The Bridge Foundation" class="footer-logo">
+      </a>
+      <p>Bridging the gap between talent and opportunity for underserved Student Athletes</p>
+    </div>
+    <div class="footer-col"><h4>About</h4><ul>
+      <li><a href="#" class="page-link" data-page="about">Our Story</a></li>
+      <li><a href="#" class="page-link" data-page="leadership">Board of Directors</a></li>
+      <li><a href="#" class="page-link" data-page="leadership">College Advisory</a></li>
+    </ul></div>
+    <div class="footer-col"><h4>Impact</h4><ul>
+      <li><a href="#" class="page-link" data-page="programs">Services</a></li>
+      <li><a href="#" class="page-link" data-page="about">The Challenge</a></li>
+      <li><a href="#" class="page-link" data-page="athletes">Our Student Athletes</a></li>
+    </ul></div>
+    <div class="footer-col"><h4>Get Involved</h4><ul>
+      <li><a href="#" class="page-link" data-page="join-us">Apply Now</a></li>
+      <li><a href="#" class="page-link" data-page="support">Get Involved</a></li>
+      <li><a href="#" class="page-link" data-page="news">Events</a></li>
+      <li><a href="https://buy.stripe.com/9B69AT6fYdsP98Ganv3sI01" target="_blank">Donate</a></li>
+    </ul></div>
+  </div>
+  <div class="footer-bottom">
+    <p>© 2026 The Bridge Foundation. All rights reserved.</p>
+    <p>bffsa.org</p>
+  </div>
+</footer>
+</div>
+
+<div class="page-section" id="page-pathways">
+<nav>
+  <a href="#" class="page-link" data-page="home">
+    <img src="assets/img-01.png" alt="The Bridge Foundation" class="nav-logo">
+  </a>
+  <ul class="nav-links">
+    <li><a href="#" class="page-link" data-page="about">About</a></li>
+    <li><a href="#" class="page-link" data-page="programs">Programs</a></li>
+    <li><a href="#" class="page-link" data-page="athletes">Athletes</a></li>
+    <li><a href="#" class="page-link" data-page="support">Support</a></li>
+    <li><a href="https://buy.stripe.com/9B69AT6fYdsP98Ganv3sI01" class="nav-cta" target="_blank">Donate Now</a></li>
+  </ul>
+  <button class="hamburger" onclick="toggleMob('pathways')"><span></span><span></span><span></span></button>
+</nav>
+<div class="mob-menu" id="mm-pathways">
+  <a href="#" class="page-link mob-link" data-page="home">Home</a>
+  <div class="mob-section">About Us</div>
+  <a href="#" class="page-link mob-link" data-page="about">About</a>
+  <a href="#" class="page-link mob-link" data-page="leadership">Leadership</a>
+  <div class="mob-section">Our Impact</div>
+  <a href="#" class="page-link mob-link" data-page="programs">Programs</a>
+  <a href="#" class="page-link mob-link" data-page="athletes">Athletes</a>
+  <div class="mob-section">Get Involved</div>
+  <a href="#" class="page-link mob-link" data-page="support">Support</a>
+  <a href="#" class="page-link mob-link" data-page="news">News</a>
+  <a href="#" class="page-link mob-link" data-page="join-us">Apply</a>
+  <a href="https://buy.stripe.com/9B69AT6fYdsP98Ganv3sI01" class="mob-cta" target="_blank">Donate Now</a>
+</div>
+<div class="page-hdr">
+  <span class="t-eyebrow">Programs</span>
+  <h1 class="t-h1 fade-in" style="margin-top:0.5rem;">Bridge <em>Pathways</em></h1>
+</div>
+<div class="divider"></div>
+<section class="section">
+  <div class="wrap">
+    <span class="t-eyebrow" style="margin-bottom:1rem;">Our Programs</span>
+    <h2 class="t-h2" style="margin-bottom:1.25rem;max-width:20ch;">Programs for <em>what comes next.</em></h2>
+    <p class="t-body" style="max-width:560px;">Bridge Pathways brings our programs for student athletes and their families into one place.</p>
+    <div class="prog-grid">
+      <div class="prog">
+        <h3>Bridge Pathways <em>Finance</em></h3>
+        <p class="t-body">A free money program for student athletes. Eight weekly sessions on video, made for students and the parents who back them.</p>
+        <div class="prog-facts"><span class="ath-badge">Free</span><span class="ath-badge">Wednesdays, 8 PM ET</span><span class="ath-badge">Season one: Nov to Jan</span></div>
+        <div class="btn-row"><a href="#" class="page-link btn btn-white" data-page="pathways-finance">See the Finance program</a></div>
+      </div>
+      <div class="prog">
+        <h3>Bridge to the <em>Trades</em></h3>
+        <p class="prog-lead">College is one path. This is another.</p>
+        <p class="t-body">Bridge to the Trades will connect BFFSA athletes and alumni with licensed trade professionals for apprenticeships and real job placement across plumbing, electrical, construction, and auto body.</p>
+        <p class="prog-soon">Coming soon.</p>
+      </div>
+    </div>
+  </div>
+</section>
+<div class="cta-strip">
+  <div class="wrap">
+    <h2 class="t-h2" style="margin-bottom:1rem;">Not sure <em>where to start?</em></h2>
+    <p class="t-body" style="max-width:420px;margin:0 auto 2rem;">Begin with Finance. Season one starts in November and it is free.</p>
+    <div class="btn-row" style="justify-content:center;"><a href="#" class="page-link btn btn-white" data-page="pathways-finance">Join Season One</a></div>
+  </div>
+</div>
+<footer>
+  <div class="footer-grid">
+    <div class="footer-brand">
+      <a href="#" class="page-link" data-page="home">
+        <img src="assets/img-05.png" alt="The Bridge Foundation" class="footer-logo">
+      </a>
+      <p>Bridging the gap between talent and opportunity for underserved Student Athletes</p>
+    </div>
+    <div class="footer-col"><h4>About</h4><ul>
+      <li><a href="#" class="page-link" data-page="about">Our Story</a></li>
+      <li><a href="#" class="page-link" data-page="leadership">Board of Directors</a></li>
+      <li><a href="#" class="page-link" data-page="leadership">College Advisory</a></li>
+    </ul></div>
+    <div class="footer-col"><h4>Impact</h4><ul>
+      <li><a href="#" class="page-link" data-page="programs">Services</a></li>
+      <li><a href="#" class="page-link" data-page="about">The Challenge</a></li>
+      <li><a href="#" class="page-link" data-page="athletes">Our Student Athletes</a></li>
+    </ul></div>
+    <div class="footer-col"><h4>Get Involved</h4><ul>
+      <li><a href="#" class="page-link" data-page="join-us">Apply Now</a></li>
+      <li><a href="#" class="page-link" data-page="support">Get Involved</a></li>
+      <li><a href="#" class="page-link" data-page="news">Events</a></li>
+      <li><a href="https://buy.stripe.com/9B69AT6fYdsP98Ganv3sI01" target="_blank">Donate</a></li>
+    </ul></div>
+  </div>
+  <div class="footer-bottom">
+    <p>© 2026 The Bridge Foundation. All rights reserved.</p>
+    <p>bffsa.org</p>
+  </div>
+</footer>
+</div>
+<div class="page-section" id="page-pathways-finance">
+<nav>
+  <a href="#" class="page-link" data-page="home">
+    <img src="assets/img-01.png" alt="The Bridge Foundation" class="nav-logo">
+  </a>
+  <ul class="nav-links">
+    <li><a href="#" class="page-link" data-page="about">About</a></li>
+    <li><a href="#" class="page-link" data-page="programs">Programs</a></li>
+    <li><a href="#" class="page-link" data-page="athletes">Athletes</a></li>
+    <li><a href="#" class="page-link" data-page="support">Support</a></li>
+    <li><a href="https://buy.stripe.com/9B69AT6fYdsP98Ganv3sI01" class="nav-cta" target="_blank">Donate Now</a></li>
+  </ul>
+  <button class="hamburger" onclick="toggleMob('pathways-finance')"><span></span><span></span><span></span></button>
+</nav>
+<div class="mob-menu" id="mm-pathways-finance">
+  <a href="#" class="page-link mob-link" data-page="home">Home</a>
+  <div class="mob-section">About Us</div>
+  <a href="#" class="page-link mob-link" data-page="about">About</a>
+  <a href="#" class="page-link mob-link" data-page="leadership">Leadership</a>
+  <div class="mob-section">Our Impact</div>
+  <a href="#" class="page-link mob-link" data-page="programs">Programs</a>
+  <a href="#" class="page-link mob-link" data-page="athletes">Athletes</a>
+  <div class="mob-section">Get Involved</div>
+  <a href="#" class="page-link mob-link" data-page="support">Support</a>
+  <a href="#" class="page-link mob-link" data-page="news">News</a>
+  <a href="#" class="page-link mob-link" data-page="join-us">Apply</a>
+  <a href="https://buy.stripe.com/9B69AT6fYdsP98Ganv3sI01" class="mob-cta" target="_blank">Donate Now</a>
+</div>
+<div class="page-hdr">
+  <a href="#" class="page-link crumb" data-page="pathways">Bridge Pathways</a>
+  <h1 class="t-h1 fade-in" style="margin-top:0.5rem;">Bridge Pathways <em>Finance</em></h1>
+</div>
+<div class="divider"></div>
+<section class="section section-tight">
+  <div class="wrap">
+    <span class="t-eyebrow" style="margin-bottom:1rem;">Free for every student athlete</span>
+    <h2 class="t-h2" style="margin-bottom:1.25rem;max-width:22ch;">A free money program for <em>student athletes.</em></h2>
+    <p class="t-body" style="max-width:520px;margin-bottom:1.5rem;">Eight weekly sessions on video, made for students and the parents who back them.</p>
+    <div class="home-hero-stats pw-stats" style="max-width:640px;margin-top:1.25rem;">
+      <div class="home-hero-stat"><span class="num">Free</span><span class="t-label">Cost</span></div>
+      <div class="home-hero-stat"><span class="num">8 PM ET</span><span class="t-label">Wednesdays</span></div>
+      <div class="home-hero-stat"><span class="num">Nov to Jan</span><span class="t-label">Season One</span></div>
+    </div>
+    <div class="btn-row" style="justify-content:flex-start;"><a href="#pw-join" class="btn btn-white">Join Season One</a></div>
+  </div>
+</section>
+<div class="divider"></div>
+<section class="section" id="pw-weeks">
+  <div class="wrap">
+    <span class="t-eyebrow" style="margin-bottom:1rem;">The Eight Weeks</span>
+    <h2 class="t-h2" style="margin-bottom:1.25rem;">What we <em>cover</em></h2>
+    <p class="t-body" style="max-width:600px;">The first four weeks are required for student athletes who are not in college yet. The last four are optional, and we strongly suggest them.</p>
+    <div class="wk-grp"><span class="t-label">Weeks 1 to 4</span><span class="t-h3">Required</span></div>
+    <div class="svc-grid pw-grid"><div class="svc-item req"><div class="svc-num">01</div><h3>Financial Aid</h3><span class="ath-badge pw-badge">Required</span></div><div class="svc-item req"><div class="svc-num">02</div><h3>NIL and Scholarships</h3><span class="ath-badge pw-badge">Required</span></div><div class="svc-item req"><div class="svc-num">03</div><h3>Managing Money in College</h3><span class="ath-badge pw-badge">Required</span></div><div class="svc-item req"><div class="svc-num">04</div><h3>Loans</h3><span class="ath-badge pw-badge">Required</span></div></div>
+    <div class="wk-grp"><span class="t-label">Weeks 5 to 8</span><span class="t-h3">Optional, strongly suggested</span></div>
+    <div class="svc-grid pw-grid"><div class="svc-item opt"><div class="svc-num">05</div><h3>How to Save</h3><span class="ath-badge pw-badge">Optional</span></div><div class="svc-item opt"><div class="svc-num">06</div><h3>How to Budget</h3><span class="ath-badge pw-badge">Optional</span></div><div class="svc-item opt"><div class="svc-num">07</div><h3>Paychecks and Taxes</h3><span class="ath-badge pw-badge">Optional</span></div><div class="svc-item opt"><div class="svc-num">08</div><h3>Credit</h3><span class="ath-badge pw-badge">Optional</span></div></div>
+    <p class="t-small" style="margin-top:1.5rem;">No sessions Thanksgiving week, Christmas week, or New Year week.</p>
+  </div>
+</section>
+<div class="divider"></div>
+<section class="section" id="pw-how">
+  <div class="wrap">
+    <span class="t-eyebrow" style="margin-bottom:1rem;">How It Works</span>
+    <h2 class="t-h2" style="margin-bottom:1.25rem;">Short and <em>light</em></h2>
+    <div class="sp-steps">
+      <div class="sp-step"><div class="sp-step-num">01</div><h3>On video</h3><p>One session each Wednesday night.</p></div>
+      <div class="sp-step"><div class="sp-step-num">02</div><h3>45 minutes</h3><p>The length of every session.</p></div>
+      <div class="sp-step"><div class="sp-step-num">03</div><h3>Light activities</h3><p>No tests, and nothing is graded.</p></div>
+    </div>
+    <div class="sc-schedule-list pw-promise" style="margin-top:1.5rem;">
+      <div class="sc-sched-row"><span class="sc-sched-bullet">&bull;</span><span>Two Bridge Foundation adults are on every call, and we never ask about your family's money.</span></div>
+    </div>
+  </div>
+</section>
+<div class="cta-strip" id="pw-join">
+  <div class="wrap">
+    <h2 class="t-h2" style="margin-bottom:1rem;">Interested? Join <em>season one</em></h2>
+    <p class="t-body" style="max-width:420px;margin:0 auto 2rem;">Season one starts in November. It is free.</p>
+    <div class="pw-form" id="pw-form-body">
+      <div class="form-field"><label for="pw-name">Name</label><input id="pw-name" type="text" autocomplete="name"></div>
+      <div class="form-field"><label for="pw-email">Email</label><input id="pw-email" type="email" autocomplete="email"></div>
+      <div class="pw-err" id="pw-err"></div>
+      <button type="button" class="btn btn-white" id="pw-submit" style="width:100%;cursor:pointer;">Join Season One</button>
+    </div>
+    <div class="pw-success" id="pw-success">Thank you. We have your details.</div>
+  </div>
+</div>
 <footer>
   <div class="footer-grid">
     <div class="footer-brand">
@@ -3336,7 +3583,7 @@ footer {
   });
 })();</script>
 <script>(function(){
-  var vp=['home', 'about', 'leadership', 'programs', 'athletes', 'news', 'support', 'join-us'];
+  var vp=['home', 'about', 'leadership', 'programs', 'athletes', 'news', 'support', 'join-us', 'pathways', 'pathways-finance'];
 
   function show(id,replace){
     if(!vp.includes(id))id=vp[0];
@@ -3345,7 +3592,7 @@ footer {
       history[replace?'replaceState':'pushState'](null,'',path);
     }
     document.querySelectorAll('.page-section').forEach(function(s){s.classList.remove('active');});
-    document.querySelectorAll('.p-tab').forEach(function(t){t.classList.toggle('active',t.getAttribute('data-page')===id);});
+    document.querySelectorAll('.p-tab').forEach(function(t){t.classList.toggle('active',t.getAttribute('data-page')===(id.indexOf('pathways')===0?'programs':id));});
     var el=document.getElementById('page-'+id);
     if(el){el.classList.add('active');window.scrollTo(0,0);}
     var tab=document.querySelector('.p-tab[data-page="'+id+'"]');
@@ -3432,6 +3679,34 @@ footer {
     });
   },{threshold:0.4});
   nums.forEach(function(el){cuIO.observe(el);});
+})();</script>
+<script>(function(){
+  var btn=document.getElementById('pw-submit');
+  if(!btn)return;
+  btn.addEventListener('click',function(e){
+    e.preventDefault();
+    var err=document.getElementById('pw-err');
+    var name=document.getElementById('pw-name').value.trim();
+    var email=document.getElementById('pw-email').value.trim();
+    if(!name||!email){err.textContent='Name and email are required.';err.style.display='block';return;}
+    if(email.indexOf('@')<1){err.textContent='Please enter a valid email.';err.style.display='block';return;}
+    err.style.display='none';
+    btn.disabled=true;btn.textContent='Sending...';
+    fetch('/.netlify/functions/save-to-airtable',{
+      method:'POST',
+      headers:{'Content-Type':'application/json'},
+      body:JSON.stringify({_table:'event',firstName:name,lastName:'',email:email,eventName:'Bridge Pathways Finance, Season One'})
+    }).then(function(r){return r.json();}).then(function(d){
+      if(d&&d.ok){
+        document.getElementById('pw-form-body').style.display='none';
+        document.getElementById('pw-success').style.display='block';
+      }else{throw new Error('save failed');}
+    }).catch(function(){
+      btn.disabled=false;btn.textContent='Join Season One';
+      err.textContent='Something went wrong. Please try again or email dave@bffsa.org.';
+      err.style.display='block';
+    });
+  });
 })();</script>
 </body>
 </html>
