@@ -29,7 +29,7 @@ Owner: Dave Fisher. Business: Product & Engineering (BFFSA is the client).
 Python is not installed on Dave's machine. Use Node.
 
 - Extract each inline `<script>` block and run `node --check` on it (six blocks today).
-- Confirm `<div>` open and close counts still match (691 each today) and zero em dashes.
+- Confirm `<div>` open and close counts still match (694 each today) and zero em dashes.
 - Netlify functions: run with `netlify dev` if available, otherwise call the handler with a test payload in Node.
 - Open the page at 390 width and desktop for every changed section.
 - Every link and the Stripe URL on a changed page resolves.
