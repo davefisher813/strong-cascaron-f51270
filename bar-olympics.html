@@ -1,0 +1,235 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>The Bridge Bar Olympics · The Bridge Foundation</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400;1,600&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+/* Reset */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+/* Variables, matched to bffsa.org */
+:root {
+  --black:      #0d0d0d;
+  --dark:       #161616;
+  --card-bg:    #1c1c1c;
+  --border:     rgba(255,255,255,0.08);
+  --border-mid: rgba(255,255,255,0.14);
+  --grey:       #7a7a7a;
+  --light-grey: #b8b8b8;
+  --white:      #ffffff;
+  --red:        #cc0000;
+  --red-bright: #ff0000;
+  --red-muted:  rgba(204,0,0,0.15);
+  --max-w:      1080px;
+  --pad-x:      4rem;
+  --pad-x-sm:   1.5rem;
+  --section-y:  2rem;
+}
+
+/* Base */
+html  { scroll-behavior: smooth; font-size: 16px; }
+body  { font-family: 'DM Sans', sans-serif; background: var(--black); color: var(--white); overflow-x: hidden; -webkit-font-smoothing: antialiased; }
+a     { cursor: pointer; }
+
+/* Typography scale */
+.t-eyebrow {
+  font-size: 0.65rem; letter-spacing: 0.4em; text-transform: uppercase;
+  color: var(--light-grey); font-weight: 500; display: block;
+}
+.t-h1 {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: clamp(2.8rem, 6vw, 5.2rem);
+  font-weight: 700; line-height: 0.94; letter-spacing: 0.01em;
+  text-wrap: balance;
+}
+.t-h1 em { font-style: italic; color: var(--light-grey); }
+.t-h2 {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: clamp(1.7rem, 3vw, 2.3rem);
+  font-weight: 700; line-height: 1.1;
+  text-wrap: balance;
+}
+.t-h2 em { font-style: italic; color: var(--light-grey); }
+.t-body {
+  font-size: 1.05rem; line-height: 1.9;
+  color: rgba(255,255,255,0.88); font-weight: 400;
+}
+.t-small {
+  font-size: 0.95rem; color: rgba(255,255,255,0.92); font-weight: 400; line-height: 1.7;
+}
+.t-label {
+  font-size: 0.65rem; letter-spacing: 0.18em; text-transform: uppercase;
+  color: var(--light-grey); font-weight: 500;
+}
+
+/* Layout */
+.wrap {
+  max-width: var(--max-w); margin: 0 auto;
+  padding-left: var(--pad-x); padding-right: var(--pad-x);
+}
+.section { padding-top: var(--section-y); padding-bottom: var(--section-y); }
+.section-tight { padding-top: 1rem; padding-bottom: 1rem; }
+.divider {
+  height: 1px; position: relative;
+  background: linear-gradient(90deg, var(--border) calc(50% - 14px), transparent calc(50% - 14px), transparent calc(50% + 14px), var(--border) calc(50% + 14px));
+}
+.divider::after {
+  content: ''; position: absolute; left: 50%; top: 50%;
+  width: 6px; height: 6px; background: var(--red);
+  transform: translate(-50%, -50%) rotate(45deg);
+}
+@media(max-width:860px) {
+  :root { --pad-x: var(--pad-x-sm); }
+}
+
+/* Buttons */
+.btn {
+  display: inline-flex; align-items: center; justify-content: center;
+  text-decoration: none; min-height: 48px;
+  padding: 0.8rem 2.2rem; font-size: 0.74rem;
+  font-weight: 500; letter-spacing: 0.12em; text-transform: uppercase;
+  transition: all 0.2s; border: none; font-family: 'DM Sans', sans-serif;
+}
+.btn-outline { background: transparent; border: 1px solid var(--red); color: var(--red-bright); }
+.btn-outline:hover { background: var(--red); border-color: var(--red); color: var(--white); }
+
+/* Foundation header line */
+.site-line {
+  border-bottom: 1px solid var(--border);
+  padding-top: 1.1rem; padding-bottom: 1.1rem;
+  text-align: center;
+}
+
+/* Event hero */
+.ev-hero { padding-top: 2.5rem; padding-bottom: 1rem; }
+.ev-hero .t-eyebrow { margin-bottom: 0.5rem; }
+.ev-hero .t-h1 { margin-bottom: 0.6rem; font-size: clamp(2.2rem, 6vw, 2.9rem); }
+.ev-hero-meta { color: var(--white); font-size: 0.95rem; margin-bottom: 0.85rem; }
+.ev-hero-meta strong { color: var(--red); font-weight: 600; }
+.ev-hero-desc { margin-bottom: 1rem; max-width: 620px; color: var(--white); }
+
+/* Step blocks */
+.step-block .t-h2 { margin-bottom: 0.75rem; }
+.step-block .t-body { max-width: 620px; margin-bottom: 1.25rem; }
+.step-num { color: var(--light-grey); }
+
+/* Note block */
+.note-box {
+  background: var(--card-bg); border: 1px solid var(--border);
+  border-left: 2px solid var(--red); border-radius: 2px;
+  padding: 1.1rem 1.25rem; max-width: 680px;
+}
+
+/* Thank you block */
+.paid-block .t-h2 { margin-bottom: 0.75rem; }
+.paid-block .t-body { max-width: 620px; }
+
+/* Footer */
+.page-footer {
+  background: #080808; border-top: 1px solid var(--border);
+  padding-top: 2.5rem; padding-bottom: 2rem; margin-top: 2rem;
+  text-align: center;
+}
+.page-footer p { font-size: 0.8rem; color: rgba(255,255,255,0.55); font-weight: 300; line-height: 1.9; }
+.page-footer .footer-name {
+  font-family: 'Cormorant Garamond', serif; font-size: 1.05rem; font-weight: 700;
+  color: var(--white); margin-bottom: 0.4rem;
+}
+
+/* Mobile: full width buttons, 48px tap height */
+@media(max-width:640px) {
+  .btn { display: flex; width: 100%; min-height: 48px; }
+  .ev-hero { padding-top: 2rem; }
+}
+</style>
+</head>
+<body>
+
+<!-- FOUNDATION HEADER -->
+<header class="site-line">
+  <div class="wrap">
+    <span class="t-label">The Bridge Foundation for Student Athletes</span>
+  </div>
+</header>
+
+<!-- EVENT HERO -->
+<section class="ev-hero section">
+  <div class="wrap">
+    <span class="t-eyebrow">Featured Event &middot; November 2026</span>
+    <h1 class="t-h1">The Bridge <em>Bar Olympics</em></h1>
+    <p class="ev-hero-meta"><strong>Sunday, November 15, 2026</strong> &middot; 12:30 to 4:30 PM &middot; Hop &amp; Vine &middot; Stamford, CT</p>
+    <p class="t-body ev-hero-desc">Beer Pong, Darts, Trivia, Cornhole &amp; more. Teams of 4 to 6. $85 in advance &middot; $100 at the door.</p>
+    <p class="t-body ev-hero-desc">Every dollar raised goes directly to The Bridge Foundation for Student Athletes.</p>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- STEP 1 -->
+<section class="section step-block" id="step-register">
+  <div class="wrap">
+    <h2 class="t-h2"><span class="step-num">Step 1 &middot;</span> Register Your Team</h2>
+    <p class="t-body">Tell us who is playing. Registration is recorded by the Foundation.</p>
+    <a href="https://airtable.com/app9yQCidfDEkBUHM/shrqSHX3SGPvs2Jds" class="btn btn-outline" target="_blank" rel="noopener">Register</a>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- STEP 2 -->
+<section class="section step-block" id="step-pay">
+  <div class="wrap">
+    <h2 class="t-h2"><span class="step-num">Step 2 &middot;</span> Pay for Your Spot</h2>
+    <p class="t-body">Advance admission is $85 per person. Choose the number of players at checkout.</p>
+    <a href="https://buy.stripe.com/dRmeVd47QewTckS53b3sI0e" class="btn btn-outline">Pay $85 Per Person</a>
+  </div>
+</section>
+
+<!-- THANK YOU (shown after payment, when the page address carries paid=1) -->
+<section class="section paid-block" id="paid-thanks" style="display:none;">
+  <div class="wrap">
+    <h2 class="t-h2">You are all set.</h2>
+    <p class="t-body">Your registration and payment are in. Watch your email: your tax letter from the Foundation is on its way. See you Sunday, November 15 at Hop &amp; Vine.</p>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- NOTE -->
+<section class="section section-tight">
+  <div class="wrap">
+    <div class="note-box">
+      <p class="t-small">After you pay, we email your tax letter from the Foundation for your records. Admission at the door is $100 per person.</p>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer class="page-footer">
+  <div class="wrap">
+    <p class="footer-name">The Bridge Foundation for Student Athletes</p>
+    <p>54 Clifford Avenue, Stamford, CT 06905</p>
+    <p>501(c)(3) &middot; EIN 99-2660039 &middot; dave@bffsa.org</p>
+  </div>
+</footer>
+
+<script>
+(function () {
+  var params = new URLSearchParams(window.location.search);
+  if (params.get('paid') === '1') {
+    var stepRegister = document.getElementById('step-register');
+    var stepPay = document.getElementById('step-pay');
+    var thanks = document.getElementById('paid-thanks');
+    if (stepRegister) { stepRegister.style.display = 'none'; }
+    if (stepPay) { stepPay.style.display = 'none'; }
+    if (thanks) { thanks.style.display = 'block'; }
+  }
+})();
+</script>
+
+</body>
+</html>
