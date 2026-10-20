@@ -169,23 +169,13 @@ a     { cursor: pointer; }
 
 <div class="divider"></div>
 
-<!-- STEP 1 -->
-<section class="section step-block" id="step-register">
+<!-- REGISTER AND PAY: one step -->
+<section class="section step-block" id="step-register-pay">
   <div class="wrap">
-    <h2 class="t-h2"><span class="step-num">Step 1 &middot;</span> Register Your Team</h2>
-    <p class="t-body">Tell us who is playing. Registration is recorded by the Foundation.</p>
-    <a href="https://airtable.com/app9yQCidfDEkBUHM/shrqSHX3SGPvs2Jds" class="btn btn-outline" target="_blank" rel="noopener">Register</a>
-  </div>
-</section>
-
-<div class="divider"></div>
-
-<!-- STEP 2 -->
-<section class="section step-block" id="step-pay">
-  <div class="wrap">
-    <h2 class="t-h2"><span class="step-num">Step 2 &middot;</span> Pay for Your Spot</h2>
-    <p class="t-body">Advance admission is $85 per person. Choose the number of players at checkout.</p>
-    <a href="https://buy.stripe.com/dRmeVd47QewTckS53b3sI0e" class="btn btn-outline">Pay $85 Per Person</a>
+    <h2 class="t-h2">Register and Pay</h2>
+    <p class="t-body">One step does both. Pay $85 per person in advance, choose the number of players at checkout, and add your team name and phone number as you pay. Your registration is recorded as soon as your payment lands.</p>
+    <a href="https://buy.stripe.com/dRmeVd47QewTckS53b3sI0e" class="btn btn-outline">Register and Pay &middot; $85 Per Person</a>
+    <p class="t-small" style="margin-top:1rem;">Paying at the door instead? <a href="https://airtable.com/app9yQCidfDEkBUHM/shrqSHX3SGPvs2Jds" target="_blank" rel="noopener" style="color:#ff0000;">Register your team here</a> and pay $100 per person when you arrive.</p>
   </div>
 </section>
 
@@ -221,11 +211,9 @@ a     { cursor: pointer; }
 (function () {
   var params = new URLSearchParams(window.location.search);
   if (params.get('paid') === '1') {
-    var stepRegister = document.getElementById('step-register');
-    var stepPay = document.getElementById('step-pay');
+    var stepMain = document.getElementById('step-register-pay');
     var thanks = document.getElementById('paid-thanks');
-    if (stepRegister) { stepRegister.style.display = 'none'; }
-    if (stepPay) { stepPay.style.display = 'none'; }
+    if (stepMain) { stepMain.style.display = 'none'; }
     if (thanks) { thanks.style.display = 'block'; }
   }
 })();
