@@ -140,6 +140,7 @@ function readRegistration(session) {
     email: (details.email || "").trim(),
     phone: (details.phone || "").trim(),
     teamName: "",
+    teamMembers: "",
     notes: "",
     extras: []
   };
@@ -150,8 +151,14 @@ function readRegistration(session) {
     else if (field.numeric && field.numeric.value != null) value = String(field.numeric.value);
     else if (field.dropdown && field.dropdown.value) value = field.dropdown.value;
     if (!value) return;
-    const tag = (field.key + " " + label).toLowerCase();
-    if (tag.indexOf("team") >= 0 && !reg.teamName) reg.teamName = value;
+    const tag = (field.key + " " + label).toLowerCase().replace(/_/g, " ");
+    if (tag.indexOf("names of everyone") >= 0) {
+      if (!reg.teamMembers) {
+        reg.teamMembers = value;
+        reg.extras.push(label + ": " + value);
+      }
+    }
+    else if (tag.indexOf("team") >= 0 && !reg.teamName) reg.teamName = value;
     else if (tag.indexOf("phone") >= 0 && !reg.phone) reg.phone = value;
     else if ((tag.indexOf("note") >= 0 || tag.indexOf("anything") >= 0 || tag.indexOf("add") >= 0) && !reg.notes) reg.notes = value;
     else reg.extras.push(label + ": " + value);
@@ -238,6 +245,7 @@ exports.handler = async function (event) {
   if (reg.email) fields["Email"] = reg.email;
   if (reg.phone) fields["Phone"] = reg.phone;
   if (reg.teamName) fields["Team Name"] = reg.teamName;
+  if (reg.teamMembers) fields["Player Names"] = reg.teamMembers;
   fields["Players"] = quantity;
   fields["Amount Paid"] = amountDollars;
   fields["Paid At"] = paidAtIso;
